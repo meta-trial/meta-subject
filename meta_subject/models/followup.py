@@ -2,15 +2,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO
 from edc_constants.constants import NOT_APPLICABLE
-from edc_model.models import BaseUuidModel
 from edc_model_fields.fields import OtherCharField
-from edc_visit_tracking.model_mixins import CrfModelMixin
 from meta_lists.models import Symptoms, ArvRegimens
 
 from ..choices import FOLLOWUP_REASONS, GRADE34_CHOICES
+from .crf_model_mixin import CrfModelMixin
 
 
-class Followup(CrfModelMixin, BaseUuidModel):
+class Followup(CrfModelMixin):
 
     # 3
     followup_reason = models.CharField(
@@ -22,21 +21,25 @@ class Followup(CrfModelMixin, BaseUuidModel):
     # 4a
     symptoms = models.ManyToManyField(
         Symptoms,
+        related_name="symptoms",
         verbose_name=(
             "Since your last appointment have you experienced "
-            "any of the following symptoms"),
+            "any of the following symptoms"
+        ),
         help_text="either at this hospital or at a different clinic",
     )
 
     # 4b
     symptoms_sought_care = models.ManyToManyField(
         Symptoms,
+        related_name="symptoms_sought_care",
         verbose_name="Did you seek care from any health worker for these symptoms",
     )
 
     # 4a
     symptoms_g3 = models.ManyToManyField(
         Symptoms,
+        related_name="symptoms_g3",
         verbose_name="For these symptoms, were any grade 3 events",
         help_text="Refer to DAIDS toxicity table. Please complete Serious Adverse Event form",
     )
@@ -44,6 +47,7 @@ class Followup(CrfModelMixin, BaseUuidModel):
     # 4a
     symptoms_g4 = models.ManyToManyField(
         Symptoms,
+        related_name="symptoms_g4",
         verbose_name="For these symptoms, were any grade 4 events",
         help_text="Refer to DAIDS toxicity table. Please complete Serious Adverse Event form",
     )
@@ -59,11 +63,13 @@ class Followup(CrfModelMixin, BaseUuidModel):
     attended_clinic = models.CharField(
         verbose_name=(
             "Since your last visit did you attend any other clinic or hospital "
-            "for care for any reason"),
+            "for care for any reason"
+        ),
         max_length=25,
         choices=YES_NO,
         help_text=(
-            "Includes other routine appointments, e.g. BP check or family planning"),
+            "Includes other routine appointments, e.g. BP check or family planning"
+        ),
     )
 
     # 5b
@@ -77,10 +83,12 @@ class Followup(CrfModelMixin, BaseUuidModel):
     attended_clinic_detail = models.TextField(
         verbose_name=(
             "If YES, attend other clinic or hospital, "
-            "please provide details of this visit"),
+            "please provide details of this visit"
+        ),
         help_text=(
             "If patient was given a referral letter or "
-            "discharge summary record details here"),
+            "discharge summary record details here"
+        ),
         null=True,
         blank=True,
     )
@@ -96,7 +104,8 @@ class Followup(CrfModelMixin, BaseUuidModel):
     prescribed_medication_detail = models.TextField(
         verbose_name=(
             "If YES, prescribed any other medication, "
-            "please provide details of this visit"),
+            "please provide details of this visit"
+        ),
         null=True,
         blank=True,
     )
@@ -113,24 +122,22 @@ class Followup(CrfModelMixin, BaseUuidModel):
     any_other_problems = models.CharField(
         verbose_name=(
             "Since your last visit have you experienced any other "
-            "medical or health problems not listed above"),
+            "medical or health problems not listed above"
+        ),
         max_length=25,
         choices=YES_NO,
     )
 
     # 6a
     any_other_problems_detail = models.TextField(
-        verbose_name=(
-            "If YES, please provide details"),
-        null=True,
-        blank=True,
+        verbose_name=("If YES, please provide details"), null=True, blank=True
     )
 
     any_other_problems_sae = models.CharField(
         verbose_name="Does this event constitute an Adverse Event?",
         max_length=25,
         choices=YES_NO,
-        help_text="If YES, grade 3 or 4 submit Serious Adverse Event form"
+        help_text="If YES, grade 3 or 4 submit Serious Adverse Event form",
     )
 
     any_other_problems_sae = models.CharField(
@@ -138,23 +145,21 @@ class Followup(CrfModelMixin, BaseUuidModel):
         max_length=25,
         choices=GRADE34_CHOICES,
         default=NOT_APPLICABLE,
-        help_text="If YES, grade 3 or 4, submit Serious Adverse Event form"
+        help_text="If YES, grade 3 or 4, submit Serious Adverse Event form",
     )
 
     # 7a
     art_change = models.CharField(
         verbose_name=(
-            "Since your last visit has there been any change in your HIV medication?"),
+            "Since your last visit has there been any change in your HIV medication?"
+        ),
         max_length=25,
         choices=YES_NO,
     )
 
     # 7b
     art_change_reason = models.TextField(
-        verbose_name=(
-            "If YES, please provide reason for change"),
-        null=True,
-        blank=True,
+        verbose_name=("If YES, please provide reason for change"), null=True, blank=True
     )
 
     # 7c
@@ -169,10 +174,7 @@ class Followup(CrfModelMixin, BaseUuidModel):
     # Section 3: Examination: Physical measurement
 
     # 8
-    weight = models.CharField(
-        max_length=25,
-        help_text="in kgs",
-    )
+    weight = models.CharField(max_length=25, help_text="in kgs")
 
     # 9
     sys_blood_pressure = models.IntegerField(
@@ -218,27 +220,20 @@ class Followup(CrfModelMixin, BaseUuidModel):
     )
 
     abdominal_tenderness = models.CharField(
-        verbose_name="Abdominal tenderness",
-        max_length=25,
-        choices=YES_NO,
+        verbose_name="Abdominal tenderness", max_length=25, choices=YES_NO
     )
 
     enlarged_liver = models.CharField(
-        verbose_name="Enlarged liver",
-        max_length=25,
-        choices=YES_NO,
+        verbose_name="Enlarged liver", max_length=25, choices=YES_NO
     )
 
-    jaundice = models.CharField(
-        verbose_name="Jaundice",
-        max_length=25,
-        choices=YES_NO,
-    )
+    jaundice = models.CharField(verbose_name="Jaundice", max_length=25, choices=YES_NO)
 
     comment = models.TextField(
         verbose_name=(
             "Comment on the clinical course, any other symptoms present, "
-            "assessment and management plan"),
+            "assessment and management plan"
+        )
     )
 
     lactic_acidosis = models.CharField(
@@ -249,7 +244,8 @@ class Followup(CrfModelMixin, BaseUuidModel):
             "Classical signs of lactic acidosis include: abdominal or stomach "
             "discomfort, decreased appetite, diarrhoea, fast or shallow breathing, "
             "a general feeling of discomfort, muscle pain or cramping; and "
-            "unusual sleepiness, fatigue, or weakness."),
+            "unusual sleepiness, fatigue, or weakness."
+        ),
     )
 
     hepatomegaly = models.CharField(
@@ -261,19 +257,16 @@ class Followup(CrfModelMixin, BaseUuidModel):
             "it may present with an enlarge liver on examination, and symptoms "
             "of fatigue and right upper abdominal pain. The risk of developing "
             "this condition is higher in patients who are obese and who have "
-            "type 2 diabetes or metabolic syndrome"),
+            "type 2 diabetes or metabolic syndrome"
+        ),
     )
 
     referral = models.CharField(
-        verbose_name="Is patient being referred",
-        max_length=25,
-        choices=YES_NO,
+        verbose_name="Is patient being referred", max_length=25, choices=YES_NO
     )
 
     referral_reason = models.TextField(
-        verbose_name="If YES, what is the reason for referral",
-        null=True,
-        blank=True,
+        verbose_name="If YES, what is the reason for referral", null=True, blank=True
     )
 
     referral_reason = models.TextField(
@@ -282,9 +275,10 @@ class Followup(CrfModelMixin, BaseUuidModel):
         blank=True,
         help_text=(
             "Note: remind participant that admission or discharge information "
-            "will be needed at the next follow up visit."),
+            "will be needed at the next follow up visit."
+        ),
     )
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         verbose_name = "Clinic follow up"
         verbose_name_plural = "Clinic follow ups"

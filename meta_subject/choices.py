@@ -3,14 +3,14 @@ from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
 
-from .constants import APPT, APPT_OTHER
+from .constants import APPT, APPT_OTHER, FASTING, NON_FASTING
 
 
 ACTIVITY_CHOICES = (
     ("working", "Working"),
     ("studying", "Studying"),
     ("caring_for_children", "Caring for children"),
-    (OTHER, "Other, please specify")
+    (OTHER, "Other, please specify"),
 )
 
 CHILDCARE_CHOICES = (
@@ -23,13 +23,21 @@ CHILDCARE_CHOICES = (
     (OTHER, "Other, specify"),
 )
 
+FASTING_CHOICES = (
+    (FASTING, "Fasting"),
+    (NON_FASTING, "Non-fasting"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+
 FOLLOWUP_REASONS = (
     (APPT, "Study appointment"),
     (APPT_OTHER, "Other routine appointment"),
 )
 
 GRADE34_CHOICES = (
-    (GRADE3, "Grade 3"), (GRADE4, "Grade 4"),
+    (GRADE3, "Grade 3"),
+    (GRADE4, "Grade 4"),
     (NOT_APPLICABLE, "Not applicable"),
 )
 

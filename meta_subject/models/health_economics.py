@@ -1,8 +1,7 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_model.models import BaseUuidModel
-from edc_visit_tracking.model_mixins import CrfModelMixin
-from django.core.validators import MaxValueValidator, MinValueValidator
+from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import (
     ACTIVITY_CHOICES,
@@ -10,24 +9,22 @@ from ..choices import (
     PAYEE_CHOICES,
     TRANSPORT_CHOICES,
 )
-from edc_constants.constants import NOT_APPLICABLE
+from .crf_model_mixin import CrfModelMixin
 
 
-class HealthEconomics(CrfModelMixin, BaseUuidModel):
+class HealthEconomics(CrfModelMixin):
 
     occupation = models.CharField(
-        verbose_name="What is your occupation/profession?",
-        max_length=50,
+        verbose_name="What is your occupation/profession?", max_length=50
     )
 
     education_in_years = models.IntegerField(
         verbose_name="How many years of education did you compete?",
-        validators=[MinValueValidator(0), MaxValueValidator(30)]
+        validators=[MinValueValidator(0), MaxValueValidator(30)],
     )
 
     education_certificate = models.CharField(
-        verbose_name="What is your highest education certificate?",
-        max_length=50,
+        verbose_name="What is your highest education certificate?", max_length=50
     )
 
     primary_school = models.CharField(
@@ -38,13 +35,11 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
 
     primary_school_in_years = models.IntegerField(
         verbose_name="If YES, for how many years",
-        validators=[MinValueValidator(0), MaxValueValidator(10)]
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
     )
 
     secondary_school = models.CharField(
-        verbose_name="Did you go to secondary school?",
-        max_length=15,
-        choices=YES_NO,
+        verbose_name="Did you go to secondary school?", max_length=15, choices=YES_NO
     )
 
     secondary_school_in_years = models.IntegerField(
@@ -55,9 +50,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     higer_education = models.CharField(
-        verbose_name="Did you go to higer education?",
-        max_length=15,
-        choices=YES_NO,
+        verbose_name="Did you go to higer education?", max_length=15, choices=YES_NO
     )
 
     higer_education_in_years = models.IntegerField(
@@ -108,7 +101,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
 
     large_expenditure_year = models.IntegerField(
         verbose_name="How much have you spent on large items in the last year",
-        help_text="e.g. furniture, electrical items, cars (in Shilling)"
+        help_text="e.g. furniture, electrical items, cars (in Shilling)",
     )
 
     buy_meds_month = models.CharField(
@@ -172,15 +165,14 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     expenditure_other_month = models.CharField(
         verbose_name=(
             "Over the last month, did you spend money on other activities (not drugs) "
-            "relating to your health?"),
+            "relating to your health?"
+        ),
         max_length=15,
         choices=YES_NO,
     )
 
     expenditure_other_detail = models.TextField(
-        verbose_name="If YES, what was the activity",
-        null=True,
-        blank=True,
+        verbose_name="If YES, what was the activity", null=True, blank=True
     )
 
     expenditure_other = models.IntegerField(
@@ -197,7 +189,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     healthcare_expenditure_month = models.IntegerField(
-        verbose_name="How much in total has been spent on your healthcare in the last month?",
+        verbose_name="How much in total has been spent on your healthcare in the last month?"
     )
 
     routine_activities = models.CharField(
@@ -207,24 +199,23 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     routine_activities_other = models.CharField(
-        verbose_name="If OTHER, please specify",
-        max_length=50,
-        null=True,
-        blank=True,
+        verbose_name="If OTHER, please specify", max_length=50, null=True, blank=True
     )
 
     off_work_days = models.IntegerField(
-        verbose_name="How much time did you take off work?",
+        verbose_name="How much time did you take off work?"
     )
 
     travel_time = models.CharField(
         verbose_name="How long did it take you to reach here?",
-        help_text="in hours and minutes (format HH:MM)"
+        max_length=5,
+        help_text="in hours and minutes (format HH:MM)",
     )
 
     hospital_time = models.CharField(
         verbose_name="How much time did you spend at the hospital?",
-        help_text="in hours and minutes (format HH:MM)"
+        max_length=5,
+        help_text="in hours and minutes (format HH:MM)",
     )
 
     lost_income = models.CharField(
@@ -234,15 +225,14 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     lost_income_amount = models.IntegerField(
-        verbose_name="If Yes, how much did you lose?",
-        null=True,
-        blank=True,
+        verbose_name="If Yes, how much did you lose?", null=True, blank=True
     )
 
     childcare = models.CharField(
         verbose_name=(
             "Did you ask anyone else, such as your family member, "
-            "friend to look after your child/children in order to come here?"),
+            "friend to look after your child/children in order to come here?"
+        ),
         max_length=15,
         choices=YES_NO_NA,
     )
@@ -250,7 +240,8 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     childcare_source = models.CharField(
         verbose_name=(
             "If Yes, what would they have been doing if they had not stayed to "
-            "look after your child or children?"),
+            "look after your child or children?"
+        ),
         max_length=25,
         choices=CHILDCARE_CHOICES,
         default=NOT_APPLICABLE,
@@ -259,7 +250,8 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     childcare_source_timeoff = models.IntegerField(
         verbose_name=(
             "How much time did a family member, friend take off work to look "
-            "after your child or children?"),
+            "after your child or children?"
+        ),
         null=True,
         blank=True,
         help_text="in Days",
@@ -267,7 +259,8 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
 
     transport = models.CharField(
         verbose_name=(
-            "Which form of transport did you take to get to the hospital today?"),
+            "Which form of transport did you take to get to the hospital today?"
+        ),
         max_length=25,
         choices=TRANSPORT_CHOICES,
     )
@@ -278,23 +271,20 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     transport_barter = models.CharField(
-        verbose_name=(
-            "Did you sell anything to pay for your visit today?"),
+        verbose_name=("Did you sell anything to pay for your visit today?"),
         max_length=15,
         choices=YES_NO,
     )
 
     transport_borrow = models.CharField(
-        verbose_name=(
-            "Did you take any loans to pay for your visit?"),
+        verbose_name=("Did you take any loans to pay for your visit?"),
         max_length=15,
         choices=YES_NO,
     )
 
     # 39
     health_insurance = models.CharField(
-        verbose_name=(
-            "Do you have private healthcare insurance?"),
+        verbose_name=("Do you have private healthcare insurance?"),
         max_length=15,
         choices=YES_NO,
     )
@@ -302,12 +292,13 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     health_insurance_pay = models.IntegerField(
         verbose_name=(
             "If Yes, how much do you pay towards your contributions to "
-            "healthcare insurance every month?"),
+            "healthcare insurance every month?"
+        ),
         null=True,
         blank=True,
         help_text="in Shilling",
     )
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         verbose_name = "Health Economics"
         verbose_name_plural = "Health Economics"

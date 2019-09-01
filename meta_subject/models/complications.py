@@ -1,29 +1,22 @@
 from django.db import models
 from edc_constants.choices import YES_NO, NORMAL_ABNORMAL, PRESENT_ABSENT
-from edc_model.models import BaseUuidModel
-from edc_visit_tracking.model_mixins import CrfModelMixin
 
-from .choices import FUNDOSCOPY_CHOICES
+from ..choices import FUNDOSCOPY_CHOICES
+from .crf_model_mixin import CrfModelMixin
 
 
-class Complications(CrfModelMixin, BaseUuidModel):
+class Complications(CrfModelMixin):
 
     cataracts = models.CharField(
-        verbose_name="Presence of cataracts",
-        max_length=15,
-        choices=YES_NO,
+        verbose_name="Presence of cataracts", max_length=15, choices=YES_NO
     )
 
     fundoscopy = models.CharField(
-        verbose_name="Fundoscopy",
-        max_length=35,
-        choices=FUNDOSCOPY_CHOICES,
+        verbose_name="Fundoscopy", max_length=35, choices=FUNDOSCOPY_CHOICES
     )
 
     achilles_tendon_reflex = models.CharField(
-        verbose_name="Achilles tendon reflex",
-        max_length=15,
-        choices=PRESENT_ABSENT,
+        verbose_name="Achilles tendon reflex", max_length=15, choices=PRESENT_ABSENT
     )
 
     foot_pin_prick = models.CharField(
@@ -45,21 +38,18 @@ class Complications(CrfModelMixin, BaseUuidModel):
         max_length=15,
         choices=NORMAL_ABNORMAL,
         help_text=(
-            "Can the patient distinguish between temperature on the dorsum of the foot?"),
+            "Can the patient distinguish between temperature on the dorsum of the foot?"
+        ),
     )
 
     dorsalis_pedis_pulse = models.CharField(
-        verbose_name="Dorsalis pedis pulse",
-        max_length=15,
-        choices=PRESENT_ABSENT,
+        verbose_name="Dorsalis pedis pulse", max_length=15, choices=PRESENT_ABSENT
     )
 
     posterior_tibial_pulse = models.CharField(
-        verbose_name="Posterior tibial pulse",
-        max_length=15,
-        choices=PRESENT_ABSENT,
+        verbose_name="Posterior tibial pulse", max_length=15, choices=PRESENT_ABSENT
     )
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         verbose_name = "Presence of Complications"
         verbose_name_plural = "Presence of Complications"
