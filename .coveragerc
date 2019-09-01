@@ -1,0 +1,4 @@
+[run]
+include = meta_subject/*
+omit = meta_subject/tests/*
+branch = 1
