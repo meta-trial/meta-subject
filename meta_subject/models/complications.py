@@ -1,11 +1,12 @@
 from django.db import models
 from edc_constants.choices import YES_NO, NORMAL_ABNORMAL, PRESENT_ABSENT
+from edc_model.models import BaseUuidModel
 
 from ..choices import FUNDOSCOPY_CHOICES
 from .crf_model_mixin import CrfModelMixin
 
 
-class Complications(CrfModelMixin):
+class Complications(CrfModelMixin, BaseUuidModel):
 
     cataracts = models.CharField(
         verbose_name="Presence of cataracts", max_length=15, choices=YES_NO

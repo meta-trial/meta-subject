@@ -1,1 +1,0 @@
-from .blood_result_admin import BloodResultsAdmin

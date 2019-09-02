@@ -1,38 +1,25 @@
 from django.contrib import admin
 from edc_action_item import action_fields
-from edc_model_admin import audit_fieldset_tuple
 
-from ...admin_site import ambition_subject_admin
-from ...constants import DAY1
-from ...forms import BloodResultForm
-from ...models import BloodResult
 from ..modeladmin import CrfModelAdmin
-from .fieldsets import fieldset, biosynex_fieldset
 
 
-@admin.register(BloodResult, site=ambition_subject_admin)
-class BloodResultsAdmin(CrfModelAdmin):
+conclusion_fieldset = (
+    "Conclusion",
+    {"fields": ("results_abnormal", "results_reportable")},
+)
+summary_fieldset = ("Summary", {"classes": ("collapse",), "fields": ("summary",)})
 
-    form = BloodResultForm
 
-    conditional_fieldsets = {DAY1: biosynex_fieldset}
-    fieldsets_move_to_end = ["Conclusion", "Summary", "Action", audit_fieldset_tuple[0]]
+class BloodResultsModelAdminMixin(CrfModelAdmin):
 
-    fieldsets = fieldset
+    form = None
 
-    autocomplete_fields = [
-        "ft_requisition",
-        "cbc_requisition",
-        "cd4_requisition",
-        "vl_requisition",
-    ]
+    fieldsets = None
+
     radio_fields = {
         "results_abnormal": admin.VERTICAL,
         "results_reportable": admin.VERTICAL,
-        "bios_crag": admin.VERTICAL,
-        "crag_control_result": admin.VERTICAL,
-        "crag_t1_result": admin.VERTICAL,
-        "crag_t2_result": admin.VERTICAL,
     }
 
     readonly_fields = ("summary",) + action_fields
