@@ -1,10 +1,11 @@
 from django.db import models
+from edc_model.models import BaseUuidModel
 
 from ..choices import MISSED_PILLS
 from .crf_model_mixin import CrfModelMixin
 
 
-class MedicationAdherence(CrfModelMixin):
+class MedicationAdherence(CrfModelMixin, BaseUuidModel):
 
     visual_score = models.IntegerField(verbose_name="Visual score", help_text="%")
 

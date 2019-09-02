@@ -2,6 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO
 from edc_constants.constants import NOT_APPLICABLE
+from edc_model.models import BaseUuidModel
 from edc_model_fields.fields import OtherCharField
 from meta_lists.models import Symptoms, ArvRegimens
 
@@ -9,7 +10,7 @@ from ..choices import FOLLOWUP_REASONS, GRADE34_CHOICES
 from .crf_model_mixin import CrfModelMixin
 
 
-class Followup(CrfModelMixin):
+class Followup(CrfModelMixin, BaseUuidModel):
 
     # 3
     followup_reason = models.CharField(

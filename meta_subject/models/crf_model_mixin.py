@@ -2,7 +2,6 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
-from edc_model.models import BaseUuidModel
 from edc_offstudy.model_mixins import OffstudyCrfModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_sites.models import SiteModelMixin
@@ -22,7 +21,6 @@ class CrfModelMixin(
     OffstudyCrfModelMixin,
     SiteModelMixin,
     ReferenceModelMixin,
-    BaseUuidModel,
 ):
 
     """ Base model for all scheduled models

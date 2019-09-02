@@ -1,17 +1,26 @@
 from django.contrib import admin
 from edc_action_item import action_fields
 
-# from edc_model_admin import audit_fieldset_tuple
-
-from ...admin_site import meta_subject_admin
-from ...models import BloodResult
 from ..modeladmin import CrfModelAdmin
 
 
-@admin.register(BloodResult, site=meta_subject_admin)
-class BloodResultsAdmin(CrfModelAdmin):
+conclusion_fieldset = (
+    "Conclusion",
+    {"fields": ("results_abnormal", "results_reportable")},
+)
+summary_fieldset = ("Summary", {"classes": ("collapse",), "fields": ("summary",)})
 
-    # form = BloodResultForm
+
+class BloodResultsModelAdminMixin(CrfModelAdmin):
+
+    form = None
+
+    fieldsets = None
+
+    radio_fields = {
+        "results_abnormal": admin.VERTICAL,
+        "results_reportable": admin.VERTICAL,
+    }
 
     readonly_fields = ("summary",) + action_fields
 

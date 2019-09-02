@@ -1,11 +1,12 @@
 from django.db import models
 from edc_constants.choices import YES_NO, PRESENT_ABSENT_NA
 from edc_constants.constants import NOT_APPLICABLE
+from edc_model.models import BaseUuidModel
 
 from .crf_model_mixin import CrfModelMixin
 
 
-class MalariaRapidTest(CrfModelMixin):
+class MalariaRapidTest(CrfModelMixin, BaseUuidModel):
 
     performed = models.CharField(
         verbose_name="Was the malaria rapid test performed?",
