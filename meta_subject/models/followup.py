@@ -42,7 +42,10 @@ class Followup(CrfModelMixin, BaseUuidModel):
         Symptoms,
         related_name="symptoms_g3",
         verbose_name="For these symptoms, were any grade 3 events",
-        help_text="Refer to DAIDS toxicity table. Please complete Serious Adverse Event form",
+        help_text=(
+            "Refer to DAIDS toxicity table. "
+            "Please complete Serious Adverse Event form"
+        ),
     )
 
     # 4a
@@ -50,7 +53,10 @@ class Followup(CrfModelMixin, BaseUuidModel):
         Symptoms,
         related_name="symptoms_g4",
         verbose_name="For these symptoms, were any grade 4 events",
-        help_text="Refer to DAIDS toxicity table. Please complete Serious Adverse Event form",
+        help_text=(
+            "Refer to DAIDS toxicity table. "
+            "Please complete Serious Adverse Event form"
+        ),
     )
 
     # 4c
@@ -96,7 +102,10 @@ class Followup(CrfModelMixin, BaseUuidModel):
 
     # 5d
     prescribed_medication = models.CharField(
-        verbose_name="Were you prescribed any other medication at this clinic or hospital visit?",
+        verbose_name=(
+            "Were you prescribed any other medication at "
+            "this clinic or hospital visit?"
+        ),
         max_length=25,
         choices=YES_NO,
     )
@@ -113,7 +122,9 @@ class Followup(CrfModelMixin, BaseUuidModel):
 
     # 5d
     attended_clinic_sae = models.CharField(
-        verbose_name="Does the visit described in 5b constitute a Serious Adverse Event",
+        verbose_name=(
+            "Does the visit described in 5b constitute a Serious Adverse Event"
+        ),
         max_length=25,
         choices=YES_NO,
         help_text="If YES, submit a Serious Adverse Event Form",
@@ -238,7 +249,7 @@ class Followup(CrfModelMixin, BaseUuidModel):
     )
 
     lactic_acidosis = models.CharField(
-        verbose_name="Do you think this patient has lactic acidosis?                        ",
+        verbose_name="Do you think this patient has lactic acidosis?",
         max_length=25,
         choices=YES_NO,
         help_text=(

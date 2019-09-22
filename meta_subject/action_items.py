@@ -1,4 +1,4 @@
-from meta_ae.constants import AE_INITIAL_ACTION
+from edc_adverse_event.constants import AE_INITIAL_ACTION
 from edc_action_item import Action, site_action_items
 from edc_constants.constants import YES, HIGH_PRIORITY
 
@@ -7,6 +7,7 @@ from .constants import (
     BLOOD_RESULTS_GLU_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
+    BLOOD_RESULTS_HBA1C_ACTION,
 )
 
 
@@ -57,7 +58,14 @@ class BloodResultsGluAction(BaseBloodResultsAction):
     reference_model = "meta_subject.bloodresultsglu"
 
 
+class BloodResultsHba1cAction(BaseBloodResultsAction):
+    name = BLOOD_RESULTS_HBA1C_ACTION
+    display_name = "Reportable Blood Result: HbA1c"
+    reference_model = "meta_subject.bloodresultshba1c"
+
+
 site_action_items.register(BloodResultsFbcAction)
 site_action_items.register(BloodResultsLftAction)
 site_action_items.register(BloodResultsRftAction)
 site_action_items.register(BloodResultsGluAction)
+site_action_items.register(BloodResultsHba1cAction)

@@ -1,34 +1,33 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_constants.choices import YES_NO
-from edc_constants.constants import NOT_APPLICABLE
 from edc_model.models import BaseUuidModel
 from edc_model.validators import datetime_not_future
-from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER
+from edc_reportable import PERCENT
 from edc_reportable.choices import REPORTABLE
 
 
-from ...constants import BLOOD_RESULTS_GLU_ACTION
-from ...choices import FASTING_CHOICES
+from ...constants import BLOOD_RESULTS_HBA1C_ACTION
 from ..subject_requisition import SubjectRequisition
 from .blood_results_model_mixin import BloodResultsModelMixin
 
 
-class BloodResultsGlu(BloodResultsModelMixin, BaseUuidModel):
+class BloodResultsHba1c(BloodResultsModelMixin, BaseUuidModel):
 
-    action_name = BLOOD_RESULTS_GLU_ACTION
+    action_name = BLOOD_RESULTS_HBA1C_ACTION
 
-    tracking_identifier_prefix = "GL"
+    tracking_identifier_prefix = "HA"
 
     is_poc = models.DateTimeField(
         verbose_name="Was a point-of-care test used?", choices=YES_NO, null=True
     )
 
-    # blood glucose
-    glucose_requisition = models.ForeignKey(
+    # HbA1c
+    hba1c_requisition = models.ForeignKey(
         SubjectRequisition,
         on_delete=PROTECT,
-        related_name="bg",
+        related_name="hba1c",
         verbose_name="Requisition",
         null=True,
         blank=True,
@@ -37,44 +36,35 @@ class BloodResultsGlu(BloodResultsModelMixin, BaseUuidModel):
         ),
     )
 
-    glucose_assay_datetime = models.DateTimeField(
+    hba1c_assay_datetime = models.DateTimeField(
         verbose_name="Result Report Date and Time",
         validators=[datetime_not_future],
         null=True,
         blank=True,
     )
 
-    fasting = models.CharField(
-        verbose_name="Was this fasting or non-fasting?",
-        max_length=25,
-        choices=FASTING_CHOICES,
-        default=NOT_APPLICABLE,
-    )
-
-    glucose = models.DecimalField(
-        verbose_name="Blood Glucose",
+    hba1c = models.DecimalField(
+        verbose_name="HbA1c",
         max_digits=8,
         decimal_places=4,
+        validators=[MinValueValidator(1), MaxValueValidator(999)],
         null=True,
         blank=True,
     )
 
-    glucose_units = models.CharField(
+    hba1c_units = models.CharField(
         verbose_name="units",
         max_length=10,
-        choices=(
-            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
-            (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),
-        ),
+        choices=((PERCENT, PERCENT),),
         null=True,
         blank=True,
     )
 
-    glucose_abnormal = models.CharField(
+    hba1c_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    glucose_reportable = models.CharField(
+    hba1c_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,
@@ -83,5 +73,5 @@ class BloodResultsGlu(BloodResultsModelMixin, BaseUuidModel):
     )
 
     class Meta(BloodResultsModelMixin.Meta):
-        verbose_name = "Blood Result: Glucose"
-        verbose_name_plural = "Blood Results: Glucose"
+        verbose_name = "Blood Result: HbA1c"
+        verbose_name_plural = "Blood Results: HbA1c"

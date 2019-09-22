@@ -44,6 +44,7 @@ setup(
         'edc-offstudy',
         'edc-reportable',
         'edc-subject-dashboard',
+        'meta_lists',
     ],
     classifiers=[
         'Environment :: Web Environment',
