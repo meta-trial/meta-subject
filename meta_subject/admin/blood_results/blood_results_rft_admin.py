@@ -55,7 +55,10 @@ class BloodResultsRftAdmin(BloodResultsModelAdminMixin):
                 ]
             },
         ),
+        ("eGFR (Calculated)", {"fields": ["egfr"]}),
         conclusion_fieldset,
         summary_fieldset,
         audit_fieldset_tuple,
     )
+
+    readonly_fields = ["egfr"]

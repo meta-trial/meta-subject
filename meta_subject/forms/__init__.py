@@ -6,3 +6,4 @@ from .blood_results import (
     BloodResultsRftForm,
     BloodResultsFbcForm,
 )
+from .followup_form import FollowupForm

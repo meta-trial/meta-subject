@@ -119,6 +119,16 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
+    # eGFR
+    egfr = models.DecimalField(
+        verbose_name="eGFR",
+        max_digits=8,
+        decimal_places=4,
+        null=True,
+        blank=True,
+        help_text="mL/min/1.73 m2 (system calculated)",
+    )
+
     class Meta(BloodResultsModelMixin.Meta):
         verbose_name = "Blood Result: RFT"
         verbose_name_plural = "Blood Results: RFT"

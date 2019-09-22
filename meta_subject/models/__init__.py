@@ -1,7 +1,10 @@
-from .blood_results import BloodResultsFbc
-from .blood_results import BloodResultsLft
-from .blood_results import BloodResultsRft
-from .blood_results import BloodResultsGlu
+from .blood_results import (
+    BloodResultsFbc,
+    BloodResultsHba1c,
+    BloodResultsLft,
+    BloodResultsRft,
+    BloodResultsGlu,
+)
 from .complications import Complications
 from .followup import Followup
 from .health_economics import HealthEconomics

@@ -17,21 +17,21 @@ class BloodResultsGluAdmin(BloodResultsModelAdminMixin):
 
     form = BloodResultsGluForm
 
-    autocomplete_fields = ["glucose_requisition"]
+    autocomplete_fields = ["hba1c_requisition"]
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Blood Glucose",
+            "HbA1c",
             {
                 "fields": [
-                    "glucose_requisition",
-                    "glucose_assay_datetime",
-                    "fasting",
-                    "glucose",
-                    "glucose_units",
-                    "glucose_abnormal",
-                    "glucose_reportable",
+                    "is_poc",
+                    "hba1c_requisition",
+                    "hba1c_assay_datetime",
+                    "hba1c",
+                    "hba1c_units",
+                    "hba1c_abnormal",
+                    "hba1c_reportable",
                 ]
             },
         ),
@@ -40,4 +40,4 @@ class BloodResultsGluAdmin(BloodResultsModelAdminMixin):
         audit_fieldset_tuple,
     )
 
-    radio_fields = {"is_poc": admin.VERTICAL, "fasting": admin.VERTICAL}
+    radio_fields = {"is_poc": admin.VERTICAL}
