@@ -23,10 +23,7 @@ CHILDCARE_CHOICES = (
     (OTHER, "Other, specify"),
 )
 
-FASTING_CHOICES = (
-    (FASTING, "Fasting"),
-    (NON_FASTING, "Non-fasting"),
-)
+FASTING_CHOICES = ((FASTING, "Fasting"), (NON_FASTING, "Non-fasting"))
 
 
 FOLLOWUP_REASONS = (
@@ -104,7 +101,4 @@ VISIT_REASON = (
     (MISSED_VISIT, "Missed visit"),
 )
 
-WEIGHT_DETERMINATION = (
-    ("estimated", "Estimated"),
-    ("measured", "Measured"),
-)
+WEIGHT_DETERMINATION = (("estimated", "Estimated"), ("measured", "Measured"))

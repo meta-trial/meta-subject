@@ -21,18 +21,10 @@ class BloodResultsRftAdmin(BloodResultsModelAdminMixin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
-        ("Renal Function Tests", {"fields": [
-         "rft_requisition", "rft_assay_datetime"]}),
+        ("Renal Function Tests", {"fields": ["rft_requisition", "rft_assay_datetime"]}),
         (
             "Serum Urea",
-            {
-                "fields": [
-                    "urea",
-                    "urea_units",
-                    "urea_abnormal",
-                    "urea_reportable",
-                ]
-            },
+            {"fields": ["urea", "urea_units", "urea_abnormal", "urea_reportable"]},
         ),
         (
             "Serum Creatinine",

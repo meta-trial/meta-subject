@@ -35,8 +35,7 @@ class BloodResultsFbcAdmin(BloodResultsModelAdminMixin):
         ),
         ("HCT", {"fields": ["hct", "hct_units"]}),
         ("RBC", {"fields": ["rbc", "rbc_units"]}),
-        ("WBC", {"fields": ["wbc", "wbc_units",
-                            "wbc_abnormal", "wbc_reportable"]}),
+        ("WBC", {"fields": ["wbc", "wbc_units", "wbc_abnormal", "wbc_reportable"]}),
         (
             "Platelets",
             {

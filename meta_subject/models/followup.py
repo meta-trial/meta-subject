@@ -190,8 +190,7 @@ class Followup(CrfModelMixin, BaseUuidModel):
         verbose_name="Enlarged liver", max_length=25, choices=YES_NO
     )
 
-    jaundice = models.CharField(
-        verbose_name="Jaundice", max_length=25, choices=YES_NO)
+    jaundice = models.CharField(verbose_name="Jaundice", max_length=25, choices=YES_NO)
 
     comment = models.TextField(
         verbose_name=(

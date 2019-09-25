@@ -6,10 +6,7 @@ from meta_form_validators.form_validators import BloodResultsGluFormValidator
 from ...models import BloodResultsGlu
 
 
-class BloodResultsGluForm(
-        ActionItemFormMixin,
-        SubjectModelFormMixin,
-        forms.ModelForm):
+class BloodResultsGluForm(ActionItemFormMixin, SubjectModelFormMixin, forms.ModelForm):
 
     form_validator_cls = BloodResultsGluFormValidator
 

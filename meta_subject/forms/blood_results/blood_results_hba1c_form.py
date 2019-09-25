@@ -7,9 +7,8 @@ from ...models import BloodResultsHba1c
 
 
 class BloodResultsHba1cForm(
-        ActionItemFormMixin,
-        SubjectModelFormMixin,
-        forms.ModelForm):
+    ActionItemFormMixin, SubjectModelFormMixin, forms.ModelForm
+):
 
     form_validator_cls = BloodResultsHba1cFormValidator
 

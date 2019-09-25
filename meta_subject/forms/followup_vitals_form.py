@@ -7,6 +7,7 @@ from ..models import FollowupVitals
 class FollowupFormValidator(FormValidator):
     pass
 
+
 class FollowupVitalsForm(SubjectModelFormMixin):
 
     # form_validator_cls = FollowupFormValidator

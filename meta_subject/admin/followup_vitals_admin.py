@@ -10,30 +10,29 @@ from .modeladmin import CrfModelAdminMixin
 
 
 @admin.register(FollowupVitals, site=meta_subject_admin)
-class FollowupVitalsAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin):
+class FollowupVitalsAdmin(
+    CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin
+):
 
     form = FollowupVitalsForm
 
     fieldsets = (
-        (None, {
-            "fields": (
-                "subject_visit",
-                "report_datetime",
-            )
-        }
+        (None, {"fields": ("subject_visit", "report_datetime")}),
+        (
+            "Vitals",
+            {
+                "description": "To be completed by the research nurse",
+                "fields": (
+                    "weight",
+                    "sys_blood_pressure",
+                    "dia_blood_pressure",
+                    "heart_rate",
+                    "respiratory_rate",
+                    "oxygen_saturation",
+                    "temperature",
+                ),
+            },
         ),
-        ("Vitals", {
-            "description": "To be completed by the research nurse",
-            "fields": (
-                "weight",
-                "sys_blood_pressure",
-                "dia_blood_pressure",
-                "heart_rate",
-                "respiratory_rate",
-                "oxygen_saturation",
-                "temperature",
-            )}
-         ),
         audit_fieldset_tuple,
     )
 

@@ -31,7 +31,7 @@ class BloodResultsGlu(
         verbose_name="Was a point-of-care test used?",
         max_length=15,
         choices=YES_NO,
-        null=True
+        null=True,
     )
 
     # blood glucose

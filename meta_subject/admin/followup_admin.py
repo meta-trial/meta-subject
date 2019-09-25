@@ -16,60 +16,55 @@ class FollowupAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryA
     form = FollowupForm
 
     fieldsets = (
-        (None, {
-            "fields": (
-                "subject_visit",
-                "report_datetime",
-            )
-        }
+        (None, {"fields": ("subject_visit", "report_datetime")}),
+        (
+            "Part 1: Symptoms / ARVs",
+            {
+                "description": "To be completed by the study physician",
+                "fields": (
+                    "symptoms",
+                    "symptoms_detail",
+                    "symptoms_g3",
+                    "symptoms_g4",
+                    "any_other_problems",
+                    "any_other_problems_detail",
+                    "any_other_problems_sae",
+                    "attended_clinic",
+                    "admitted_hospital",
+                    "attended_clinic_detail",
+                    "prescribed_medication",
+                    "prescribed_medication_detail",
+                    "attended_clinic_sae",
+                    "art_change",
+                    "art_change_reason",
+                    "art_new_regimen_other",
+                ),
+            },
         ),
-        ("Part 1: Symptoms / ARVs", {
-            "description": "To be completed by the study physician",
-            "fields": (
-                "symptoms",
-                "symptoms_detail",
-                "symptoms_g3",
-                "symptoms_g4",
-                "any_other_problems",
-                "any_other_problems_detail",
-                "any_other_problems_sae",
-                "attended_clinic",
-                "admitted_hospital",
-                "attended_clinic_detail",
-                "prescribed_medication",
-                "prescribed_medication_detail",
-                "attended_clinic_sae",
-                "art_change",
-                "art_change_reason",
-                "art_new_regimen_other",
-            )}
-         ),
-        ("Part 2: Examination", {
-            "description": "To be completed by the study physician",
-            "fields": (
-                "abdominal_tenderness",
-                "enlarged_liver",
-                "jaundice",
-            )}
-         ),
-        ("Part 3: Summary", {
-            "description": "To be completed by the study physician",
-            "fields": (
-                "comment",
-                "lactic_acidosis",
-                "hepatomegaly",
-                "referral",
-                "referral_reason",
-            )}
-         ),
+        (
+            "Part 2: Examination",
+            {
+                "description": "To be completed by the study physician",
+                "fields": ("abdominal_tenderness", "enlarged_liver", "jaundice"),
+            },
+        ),
+        (
+            "Part 3: Summary",
+            {
+                "description": "To be completed by the study physician",
+                "fields": (
+                    "comment",
+                    "lactic_acidosis",
+                    "hepatomegaly",
+                    "referral",
+                    "referral_reason",
+                ),
+            },
+        ),
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = (
-        "symptoms",
-        "symptoms_g3",
-        "symptoms_g4",
-    )
+    filter_horizontal = ("symptoms", "symptoms_g3", "symptoms_g4")
 
     radio_fields = {
         "abdominal_tenderness": admin.VERTICAL,

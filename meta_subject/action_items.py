@@ -54,7 +54,7 @@ class BloodResultsFbcAction(BaseBloodResultsAction):
 
 
 class BloodResultsEgfrAction(BaseBloodResultsAction):
-    name = BLOOD_RESULTS_EGFR_ACTION,
+    name = (BLOOD_RESULTS_EGFR_ACTION,)
     display_name = "Reportable eGFR"
     reference_model = "meta_subject.bloodresultsfbc"
 

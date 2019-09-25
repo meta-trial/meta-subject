@@ -9,7 +9,9 @@ from edc_visit_tracking.managers import CrfModelManager, CurrentSiteManager
 from ..crf_model_mixin import CrfNoManagerModelMixin
 
 
-class BloodResultsModelMixin(CrfNoManagerModelMixin, ActionModelMixin, TrackingModelMixin):
+class BloodResultsModelMixin(
+    CrfNoManagerModelMixin, ActionModelMixin, TrackingModelMixin
+):
 
     action_name = None
 
@@ -64,8 +66,7 @@ class BloodResultsModelMixin(CrfNoManagerModelMixin, ActionModelMixin, TrackingM
                 elif not grade:
                     normal = grp.get_normal(value, **opts)
                     if not normal:
-                        summary.append(
-                            f"{field}: {value} {units} is abnormal")
+                        summary.append(f"{field}: {value} {units} is abnormal")
         return summary
 
     def get_action_item_reason(self):
