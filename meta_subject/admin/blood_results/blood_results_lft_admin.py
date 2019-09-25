@@ -29,10 +29,10 @@ class BloodResultsLftAdmin(BloodResultsModelAdminMixin):
             "Serum Amylase",
             {
                 "fields": [
-                    "serum_amyl",
-                    "serum_amyl_units",
-                    "serum_amyl_abnormal",
-                    "serum_amyl_reportable",
+                    "amylase",
+                    "amylase_units",
+                    "amylase_abnormal",
+                    "amylase_reportable",
                 ]
             },
         ),
@@ -41,10 +41,10 @@ class BloodResultsLftAdmin(BloodResultsModelAdminMixin):
             "Serum Albumin",
             {
                 "fields": [
-                    "serum_alb",
-                    "serum_alb_units",
-                    "serum_alb_abnormal",
-                    "serum_alb_reportable",
+                    "albumin",
+                    "albumin_units",
+                    "albumin_abnormal",
+                    "albumin_reportable",
                 ]
             },
         ),

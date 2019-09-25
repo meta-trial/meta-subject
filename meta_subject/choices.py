@@ -26,7 +26,6 @@ CHILDCARE_CHOICES = (
 FASTING_CHOICES = (
     (FASTING, "Fasting"),
     (NON_FASTING, "Non-fasting"),
-    (NOT_APPLICABLE, "Not applicable"),
 )
 
 
@@ -92,10 +91,9 @@ TRANSPORT_CHOICES = (
 
 VISIT_UNSCHEDULED_REASON = (
     ("patient_unwell_outpatient", "Patient unwell (outpatient)"),
-    ("recurrence_symptoms", "Recurrence of symptoms"),
-    ("raised_icp_management", "Raised ICP management"),
-    ("art_initiation", "ART initiation"),
     ("patient_hospitalised", "Patient hospitalised"),
+    ("routine_non_study", "Routine appointment (non-study)"),
+    ("recurrence_symptoms", "Recurrence of symptoms"),
     (OTHER, "Other"),
     (NOT_APPLICABLE, "Not applicable"),
 )
@@ -104,4 +102,9 @@ VISIT_REASON = (
     (SCHEDULED, "Scheduled visit"),
     (UNSCHEDULED, "Unscheduled visit"),
     (MISSED_VISIT, "Missed visit"),
+)
+
+WEIGHT_DETERMINATION = (
+    ("estimated", "Estimated"),
+    ("measured", "Measured"),
 )

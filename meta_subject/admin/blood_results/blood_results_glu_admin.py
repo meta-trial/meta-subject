@@ -25,6 +25,7 @@ class BloodResultsGluAdmin(BloodResultsModelAdminMixin):
             "Blood Glucose",
             {
                 "fields": [
+                    "is_poc",
                     "glucose_requisition",
                     "glucose_assay_datetime",
                     "fasting",

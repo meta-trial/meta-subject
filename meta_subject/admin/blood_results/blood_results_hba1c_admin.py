@@ -3,19 +3,15 @@ from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
 
 from ...admin_site import meta_subject_admin
-from ...forms import BloodResultsGluForm
-from ...models import BloodResultsGlu
-from .blood_results_modeladmin_mixin import (
-    BloodResultsModelAdminMixin,
-    conclusion_fieldset,
-    summary_fieldset,
-)
+from ...forms import BloodResultsHba1cForm
+from ...models import BloodResultsHba1c
+from .blood_results_modeladmin_mixin import BloodResultsModelAdminMixin
 
 
-@admin.register(BloodResultsGlu, site=meta_subject_admin)
-class BloodResultsGluAdmin(BloodResultsModelAdminMixin):
+@admin.register(BloodResultsHba1c, site=meta_subject_admin)
+class BloodResultsHba1cAdmin(BloodResultsModelAdminMixin):
 
-    form = BloodResultsGluForm
+    form = BloodResultsHba1cForm
 
     autocomplete_fields = ["hba1c_requisition"]
 
@@ -30,13 +26,13 @@ class BloodResultsGluAdmin(BloodResultsModelAdminMixin):
                     "hba1c_assay_datetime",
                     "hba1c",
                     "hba1c_units",
-                    "hba1c_abnormal",
-                    "hba1c_reportable",
+                    # "hba1c_abnormal",
+                    # "hba1c_reportable",
                 ]
             },
         ),
-        conclusion_fieldset,
-        summary_fieldset,
+        # conclusion_fieldset,
+        # summary_fieldset,
         audit_fieldset_tuple,
     )
 

@@ -19,8 +19,11 @@ class BloodResultsHba1c(BloodResultsModelMixin, BaseUuidModel):
 
     tracking_identifier_prefix = "HA"
 
-    is_poc = models.DateTimeField(
-        verbose_name="Was a point-of-care test used?", choices=YES_NO, null=True
+    is_poc = models.CharField(
+        verbose_name="Was a point-of-care test used?",
+        max_length=15,
+        choices=YES_NO,
+        null=True
     )
 
     # HbA1c
