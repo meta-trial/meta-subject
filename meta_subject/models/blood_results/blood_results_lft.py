@@ -120,14 +120,14 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # Serum Amylase
-    serum_amyl = models.IntegerField(
+    amylase = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name="Serum Amylase",
         null=True,
         blank=True,
     )
 
-    serum_amyl_units = models.CharField(
+    amylase_units = models.CharField(
         verbose_name="units",
         max_length=10,
         choices=((IU_LITER, IU_LITER),),
@@ -135,11 +135,11 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_amyl_abnormal = models.CharField(
+    amylase_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    serum_amyl_reportable = models.CharField(
+    amylase_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,
@@ -176,14 +176,14 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # Serum Albumin
-    serum_alb = models.IntegerField(
+    albumin = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name="Serum Albumin",
         null=True,
         blank=True,
     )
 
-    serum_alb_units = models.CharField(
+    albumin_units = models.CharField(
         verbose_name="units",
         max_length=10,
         choices=((GRAMS_PER_LITER, GRAMS_PER_LITER),),
@@ -191,11 +191,11 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_alb_abnormal = models.CharField(
+    albumin_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    serum_alb_reportable = models.CharField(
+    albumin_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,

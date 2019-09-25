@@ -37,11 +37,11 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # Serum urea levels
-    serum_urea = models.DecimalField(
+    urea = models.DecimalField(
         verbose_name="Serum Urea", decimal_places=2, max_digits=6, null=True, blank=True
     )
 
-    serum_urea_units = models.CharField(
+    urea_units = models.CharField(
         verbose_name="units",
         max_length=10,
         choices=((MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),),
@@ -49,11 +49,11 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_urea_abnormal = models.CharField(
+    urea_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    serum_urea_reportable = models.CharField(
+    urea_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,
@@ -62,7 +62,7 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # Serum creatinine levels
-    serum_creat = models.DecimalField(
+    creatinine = models.DecimalField(
         verbose_name="Serum Creatinine",
         decimal_places=2,
         max_digits=6,
@@ -70,7 +70,7 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_creat_units = models.CharField(
+    creatinine_units = models.CharField(
         verbose_name="units",
         max_length=10,
         choices=((MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),),
@@ -78,11 +78,11 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_creat_abnormal = models.CharField(
+    creatinine_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    serum_creat_reportable = models.CharField(
+    creatinine_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,
@@ -91,7 +91,7 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # Serum uric acid levels
-    serum_uric_acid = models.DecimalField(
+    uric_acid = models.DecimalField(
         verbose_name="Serum Uric Acid",
         decimal_places=2,
         max_digits=6,
@@ -99,7 +99,7 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_uric_acid_units = models.CharField(
+    uric_acid_units = models.CharField(
         verbose_name="units",
         max_length=10,
         choices=((MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),),
@@ -107,11 +107,11 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    serum_uric_acid_abnormal = models.CharField(
+    uric_acid_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    serum_uric_acid_reportable = models.CharField(
+    uric_acid_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,

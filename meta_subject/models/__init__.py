@@ -7,6 +7,7 @@ from .blood_results import (
 )
 from .complications import Complications
 from .followup import Followup
+from .followup_vitals import FollowupVitals
 from .health_economics import HealthEconomics
 from .malaria_rapid_test import MalariaRapidTest
 from .medication_adherence import MedicationAdherence

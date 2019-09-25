@@ -6,10 +6,12 @@ from edc_registration.models import RegisteredSubject
 from edc_reportable import site_reportables
 from edc_visit_tracking.managers import CrfModelManager, CurrentSiteManager
 
-from ..crf_model_mixin import CrfModelMixin
+from ..crf_model_mixin import CrfNoManagerModelMixin
 
 
-class BloodResultsModelMixin(CrfModelMixin, ActionModelMixin, TrackingModelMixin):
+class BloodResultsModelMixin(
+    CrfNoManagerModelMixin, ActionModelMixin, TrackingModelMixin
+):
 
     action_name = None
 
@@ -38,7 +40,7 @@ class BloodResultsModelMixin(CrfModelMixin, ActionModelMixin, TrackingModelMixin
     objects = CrfModelManager()
 
     def save(self, *args, **kwargs):
-        self.subject_identifier = self.subject_visit.subject_identifier
+        # self.subject_identifier = self.subject_visit.subject_identifier
         self.summary = "\n".join(self.get_summary())
         super().save(*args, **kwargs)
 
@@ -53,8 +55,8 @@ class BloodResultsModelMixin(CrfModelMixin, ActionModelMixin, TrackingModelMixin
         )
         summary = []
         for field in [f.name for f in self._meta.fields]:
-            value = getattr(self, field)
             grp = site_reportables.get("meta").get(field)
+            value = getattr(self, field)
             if value and grp:
                 units = getattr(self, f"{field}_units")
                 opts.update(units=units)
@@ -78,5 +80,5 @@ class BloodResultsModelMixin(CrfModelMixin, ActionModelMixin, TrackingModelMixin
     def reportable(self):
         return self.results_reportable
 
-    class Meta(CrfModelMixin.Meta):
+    class Meta(CrfNoManagerModelMixin.Meta):
         abstract = True

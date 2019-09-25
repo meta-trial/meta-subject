@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO
 from edc_constants.constants import NOT_APPLICABLE
@@ -183,54 +182,6 @@ class Followup(CrfModelMixin, BaseUuidModel):
 
     art_new_regimen_other = OtherCharField()
 
-    # Section 3: Examination: Physical measurement
-
-    # 8
-    weight = models.CharField(max_length=25, help_text="in kgs")
-
-    # 9
-    sys_blood_pressure = models.IntegerField(
-        verbose_name="Blood pressure: systolic",
-        validators=[MinValueValidator(50), MaxValueValidator(220)],
-        help_text="in mm. format SYS, e.g. 120",
-    )
-
-    # 9
-    dia_blood_pressure = models.IntegerField(
-        verbose_name="Blood pressure: diastolic",
-        validators=[MinValueValidator(20), MaxValueValidator(150)],
-        help_text="in Hg. format DIA, e.g. 80",
-    )
-
-    # 10
-    heart_rate = models.IntegerField(
-        verbose_name="Heart rate:",
-        validators=[MinValueValidator(30), MaxValueValidator(200)],
-        help_text="bpm",
-    )
-
-    # 11
-    respiratory_rate = models.IntegerField(
-        verbose_name="Respiratory rate:",
-        validators=[MinValueValidator(6), MaxValueValidator(50)],
-        help_text="breaths/min",
-    )
-
-    # 12
-    oxygen_saturation = models.IntegerField(
-        verbose_name="Oxygen saturation:",
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
-        help_text="%",
-    )
-
-    temperature = models.DecimalField(
-        verbose_name="Temperature:",
-        validators=[MinValueValidator(30), MaxValueValidator(45)],
-        decimal_places=1,
-        max_digits=3,
-        help_text="in degrees Celcius",
-    )
-
     abdominal_tenderness = models.CharField(
         verbose_name="Abdominal tenderness", max_length=25, choices=YES_NO
     )
@@ -292,5 +243,5 @@ class Followup(CrfModelMixin, BaseUuidModel):
     )
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = "Clinic follow up"
-        verbose_name_plural = "Clinic follow ups"
+        verbose_name = "Clinic follow up: Examination"
+        verbose_name_plural = "Clinic follow up: Examination"

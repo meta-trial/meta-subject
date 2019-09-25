@@ -4,7 +4,13 @@ from django.db.models.deletion import PROTECT
 from edc_constants.choices import YES_NO
 from edc_model.models import BaseUuidModel
 from edc_model.validators import datetime_not_future
-from edc_reportable import GRAMS_PER_DECILITER, PERCENT, CELLS_PER_MICROLITER
+from edc_reportable import (
+    GRAMS_PER_DECILITER,
+    PERCENT,
+    TEN_X_9_PER_LITER,
+    CELLS_PER_MILLIMETER_CUBED,
+    CELLS_PER_MILLIMETER_CUBED_DISPLAY,
+)
 from edc_reportable.choices import REPORTABLE
 
 from ...constants import BLOOD_RESULTS_FBC_ACTION
@@ -64,7 +70,7 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
     # HCT
     hct = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
-        verbose_name="Haematocrit",
+        verbose_name="Hematocrit",
         null=True,
         blank=True,
     )
@@ -100,7 +106,10 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
     rbc_units = models.CharField(
         verbose_name="units",
         max_length=10,
-        choices=((CELLS_PER_MICROLITER, CELLS_PER_MICROLITER),),
+        choices=(
+            (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),
+            (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED),
+        ),
         null=True,
         blank=True,
     )
@@ -125,7 +134,10 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
     wbc_units = models.CharField(
         verbose_name="units",
         max_length=10,
-        choices=((CELLS_PER_MICROLITER, CELLS_PER_MICROLITER),),
+        choices=(
+            (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),
+            (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED_DISPLAY),
+        ),
         null=True,
         blank=True,
     )
@@ -152,7 +164,10 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
     platelets_units = models.CharField(
         verbose_name="units",
         max_length=10,
-        choices=((CELLS_PER_MICROLITER, CELLS_PER_MICROLITER),),
+        choices=(
+            (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),
+            (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED_DISPLAY),
+        ),
         null=True,
         blank=True,
     )

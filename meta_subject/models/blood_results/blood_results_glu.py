@@ -1,27 +1,37 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
+from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO
-from edc_constants.constants import NOT_APPLICABLE
+from edc_identifier.model_mixins import TrackingModelMixin
 from edc_model.models import BaseUuidModel
 from edc_model.validators import datetime_not_future
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER
 from edc_reportable.choices import REPORTABLE
+from edc_reportable.model_mixin import BloodResultsModelMixin
 
-
-from ...constants import BLOOD_RESULTS_GLU_ACTION
 from ...choices import FASTING_CHOICES
+from ...constants import BLOOD_RESULTS_GLU_ACTION, FASTING
+from ..crf_model_mixin import CrfNoManagerModelMixin
 from ..subject_requisition import SubjectRequisition
-from .blood_results_model_mixin import BloodResultsModelMixin
 
 
-class BloodResultsGlu(BloodResultsModelMixin, BaseUuidModel):
+class BloodResultsGlu(
+    CrfNoManagerModelMixin,
+    BloodResultsModelMixin,
+    ActionModelMixin,
+    TrackingModelMixin,
+    BaseUuidModel,
+):
 
     action_name = BLOOD_RESULTS_GLU_ACTION
 
     tracking_identifier_prefix = "GL"
 
-    is_poc = models.DateTimeField(
-        verbose_name="Was a point-of-care test used?", choices=YES_NO, null=True
+    is_poc = models.CharField(
+        verbose_name="Was a point-of-care test used?",
+        max_length=15,
+        choices=YES_NO,
+        null=True,
     )
 
     # blood glucose
@@ -48,7 +58,8 @@ class BloodResultsGlu(BloodResultsModelMixin, BaseUuidModel):
         verbose_name="Was this fasting or non-fasting?",
         max_length=25,
         choices=FASTING_CHOICES,
-        default=NOT_APPLICABLE,
+        null=True,
+        blank=True,
     )
 
     glucose = models.DecimalField(
@@ -82,6 +93,12 @@ class BloodResultsGlu(BloodResultsModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    class Meta(BloodResultsModelMixin.Meta):
+    def get_summary_options(self):
+        opts = super().get_summary_options()
+        fasting = True if self.fasting == FASTING else False
+        opts.update(fasting=fasting)
+        return opts
+
+    class Meta(CrfNoManagerModelMixin.Meta):
         verbose_name = "Blood Result: Glucose"
         verbose_name_plural = "Blood Results: Glucose"

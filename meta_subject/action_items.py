@@ -8,6 +8,7 @@ from .constants import (
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
     BLOOD_RESULTS_HBA1C_ACTION,
+    BLOOD_RESULTS_EGFR_ACTION,
 )
 
 
@@ -36,35 +37,42 @@ class BaseBloodResultsAction(Action):
 
 class BloodResultsLftAction(BaseBloodResultsAction):
     name = BLOOD_RESULTS_LFT_ACTION
-    display_name = "Reportable Blood Result: LFT"
+    display_name = "Reportable result: LFT"
     reference_model = "meta_subject.bloodresultslft"
 
 
 class BloodResultsRftAction(BaseBloodResultsAction):
     name = BLOOD_RESULTS_RFT_ACTION
-    display_name = "Reportable Blood Result: RFT"
+    display_name = "Reportable result: RFT"
     reference_model = "meta_subject.bloodresultsrft"
 
 
 class BloodResultsFbcAction(BaseBloodResultsAction):
     name = BLOOD_RESULTS_FBC_ACTION
-    display_name = "Reportable Blood Result: FBC"
+    display_name = "Reportable result: FBC"
+    reference_model = "meta_subject.bloodresultsfbc"
+
+
+class BloodResultsEgfrAction(BaseBloodResultsAction):
+    name = (BLOOD_RESULTS_EGFR_ACTION,)
+    display_name = "Reportable eGFR"
     reference_model = "meta_subject.bloodresultsfbc"
 
 
 class BloodResultsGluAction(BaseBloodResultsAction):
     name = BLOOD_RESULTS_GLU_ACTION
-    display_name = "Reportable Blood Result: GLU"
+    display_name = "Reportable Blood Glucose"
     reference_model = "meta_subject.bloodresultsglu"
 
 
 class BloodResultsHba1cAction(BaseBloodResultsAction):
     name = BLOOD_RESULTS_HBA1C_ACTION
-    display_name = "Reportable Blood Result: HbA1c"
+    display_name = "Reportable HbA1c"
     reference_model = "meta_subject.bloodresultshba1c"
 
 
 site_action_items.register(BloodResultsFbcAction)
+site_action_items.register(BloodResultsEgfrAction)
 site_action_items.register(BloodResultsLftAction)
 site_action_items.register(BloodResultsRftAction)
 site_action_items.register(BloodResultsGluAction)

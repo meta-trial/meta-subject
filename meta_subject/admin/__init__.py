@@ -6,6 +6,7 @@ from .blood_results import (
 )
 from .complications_admin import ComplicationsAdmin
 from .followup_admin import FollowupAdmin
+from .followup_vitals_admin import FollowupVitalsAdmin
 from .health_economics_admin import HealthEconomicsAdmin
 from .malaria_rapid_test import MalariaRapidTestAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin

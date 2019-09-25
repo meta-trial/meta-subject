@@ -24,23 +24,16 @@ class BloodResultsRftAdmin(BloodResultsModelAdminMixin):
         ("Renal Function Tests", {"fields": ["rft_requisition", "rft_assay_datetime"]}),
         (
             "Serum Urea",
-            {
-                "fields": [
-                    "serum_urea",
-                    "serum_urea_units",
-                    "serum_urea_abnormal",
-                    "serum_urea_reportable",
-                ]
-            },
+            {"fields": ["urea", "urea_units", "urea_abnormal", "urea_reportable"]},
         ),
         (
             "Serum Creatinine",
             {
                 "fields": [
-                    "serum_creat",
-                    "serum_creat_units",
-                    "serum_creat_abnormal",
-                    "serum_creat_reportable",
+                    "creatinine",
+                    "creatinine_units",
+                    "creatinine_abnormal",
+                    "creatinine_reportable",
                 ]
             },
         ),
@@ -48,10 +41,10 @@ class BloodResultsRftAdmin(BloodResultsModelAdminMixin):
             "Serum Uric Acid",
             {
                 "fields": [
-                    "serum_uric_acid",
-                    "serum_uric_acid_units",
-                    "serum_uric_acid_abnormal",
-                    "serum_uric_acid_reportable",
+                    "uric_acid",
+                    "uric_acid_units",
+                    "uric_acid_abnormal",
+                    "uric_acid_reportable",
                 ]
             },
         ),
