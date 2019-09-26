@@ -8,7 +8,8 @@ conclusion_fieldset = (
     "Conclusion",
     {"fields": ("results_abnormal", "results_reportable")},
 )
-summary_fieldset = ("Summary", {"classes": ("collapse",), "fields": ("summary",)})
+summary_fieldset = ("Summary", {"classes": (
+    "collapse",), "fields": ("summary",)})
 
 
 class BloodResultsModelAdminMixin(CrfModelAdmin):
@@ -28,7 +29,8 @@ class BloodResultsModelAdminMixin(CrfModelAdmin):
 
     list_filter = ("results_abnormal", "results_reportable")
 
-    search_fields = ("action_identifier", "subject_identifier", "tracking_identifier")
+    search_fields = ("action_identifier",
+                     "subject_identifier", "tracking_identifier")
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "appointment" and request.GET.get("appointment"):

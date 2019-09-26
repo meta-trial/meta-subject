@@ -96,8 +96,9 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # RBC
-    rbc = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(999999)],
+    rbc = models.DecimalField(
+        decimal_places=2, max_digits=6,
+        validators=[MinValueValidator(1.0), MaxValueValidator(999999.0)],
         verbose_name="Red blood cell count",
         null=True,
         blank=True,

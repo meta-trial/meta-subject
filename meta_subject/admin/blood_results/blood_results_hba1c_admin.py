@@ -36,4 +36,8 @@ class BloodResultsHba1cAdmin(BloodResultsModelAdminMixin):
         audit_fieldset_tuple,
     )
 
-    radio_fields = {"is_poc": admin.VERTICAL}
+    radio_fields = {
+        "is_poc": admin.VERTICAL,
+        "results_abnormal": admin.VERTICAL,
+        "results_reportable": admin.VERTICAL,
+    }

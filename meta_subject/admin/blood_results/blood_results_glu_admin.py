@@ -41,4 +41,9 @@ class BloodResultsGluAdmin(BloodResultsModelAdminMixin):
         audit_fieldset_tuple,
     )
 
-    radio_fields = {"is_poc": admin.VERTICAL, "fasting": admin.VERTICAL}
+    radio_fields = {
+        "is_poc": admin.VERTICAL,
+        "fasting": admin.VERTICAL,
+        "results_abnormal": admin.VERTICAL,
+        "results_reportable": admin.VERTICAL,
+    }

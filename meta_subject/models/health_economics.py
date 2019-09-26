@@ -50,11 +50,11 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    higer_education = models.CharField(
+    higher_education = models.CharField(
         verbose_name="Did you go to higer education?", max_length=15, choices=YES_NO
     )
 
-    higer_education_in_years = models.IntegerField(
+    higher_education_in_years = models.IntegerField(
         verbose_name="If YES, for how many years",
         validators=[MinValueValidator(0), MaxValueValidator(10)],
         null=True,

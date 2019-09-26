@@ -44,14 +44,13 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
         )
         path = urlsplit(request.META.get("HTTP_REFERER")).path
         query = urlsplit(request.META.get("HTTP_REFERER")).query
-        if "bloodresult" in path or "lumbarpuncturecsf" in path:
+        if "bloodresult" in path:
             attrs = parse_qs(query)
             try:
                 subject_visit = attrs.get("subject_visit")[0]
-            except IndexError:
+            except (TypeError, IndexError):
                 pass
             else:
                 queryset = queryset.filter(
-                    subject_visit__id=subject_visit, is_drawn=YES
-                )
+                    subject_visit=subject_visit, is_drawn=YES)
         return queryset, use_distinct
