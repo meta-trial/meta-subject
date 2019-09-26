@@ -10,6 +10,7 @@ from edc_reportable.choices import REPORTABLE
 from ...constants import BLOOD_RESULTS_LFT_ACTION
 from ..subject_requisition import SubjectRequisition
 from .blood_results_model_mixin import BloodResultsModelMixin
+from edc_reportable.units import GRAMS_PER_DECILITER
 
 
 class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
@@ -186,7 +187,10 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
     albumin_units = models.CharField(
         verbose_name="units",
         max_length=10,
-        choices=((GRAMS_PER_LITER, GRAMS_PER_LITER),),
+        choices=(
+            (GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),
+            (GRAMS_PER_LITER, GRAMS_PER_LITER),
+        ),
         null=True,
         blank=True,
     )
