@@ -63,11 +63,7 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
 
     # Serum creatinine levels
     creatinine = models.DecimalField(
-        verbose_name="Creatinine",
-        decimal_places=2,
-        max_digits=6,
-        null=True,
-        blank=True,
+        verbose_name="Creatinine", decimal_places=2, max_digits=6, null=True, blank=True
     )
 
     creatinine_units = models.CharField(
@@ -92,11 +88,7 @@ class BloodResultsRft(BloodResultsModelMixin, BaseUuidModel):
 
     # Serum uric acid levels
     uric_acid = models.DecimalField(
-        verbose_name="Uric Acid",
-        decimal_places=2,
-        max_digits=6,
-        null=True,
-        blank=True,
+        verbose_name="Uric Acid", decimal_places=2, max_digits=6, null=True, blank=True
     )
 
     uric_acid_units = models.CharField(
