@@ -1,11 +1,9 @@
 from django.contrib import admin
-
-# from django_audit_fields.admin import audit_fieldset_tuple
+from django_audit_fields.admin import audit_fieldset_tuple
 
 from ..admin_site import meta_subject_admin
 from ..models import HealthEconomics
 from .modeladmin import CrfModelAdmin
-from django_audit_fields.admin import audit_fieldset_tuple
 
 
 @admin.register(HealthEconomics, site=meta_subject_admin)
