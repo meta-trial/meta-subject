@@ -17,18 +17,13 @@ from .model_mixins import VitalsFieldMixin
 class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
 
     symptoms = models.ManyToManyField(
-        Symptoms,
-        verbose_name="Do you have any of the following symptoms?")
-
-    other_symptoms = OtherCharField(
-        null=True,
-        blank=True,
+        Symptoms, verbose_name="Do you have any of the following symptoms?"
     )
 
+    other_symptoms = OtherCharField(null=True, blank=True)
+
     hiv_diagnosis_date = models.DateField(
-        verbose_name="When was the diagnosis of HIV made?",
-        null=True,
-        blank=True,
+        verbose_name="When was the diagnosis of HIV made?", null=True, blank=True
     )
 
     arv_initiation_date = models.DateField(
@@ -46,9 +41,7 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
     )
 
     viral_load_date = models.DateField(
-        verbose_name="Date of last viral load",
-        null=True,
-        blank=True,
+        verbose_name="Date of last viral load", null=True, blank=True
     )
 
     cd4 = models.IntegerField(
@@ -59,30 +52,25 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
         help_text=CELLS_PER_MILLIMETER_CUBED_DISPLAY,
     )
 
-    cd4_date = models.DateField(
-        verbose_name="Date of last CD4",
-        null=True,
-        blank=True,
-    )
+    cd4_date = models.DateField(verbose_name="Date of last CD4", null=True, blank=True)
 
     current_arv_regimen = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,
         related_name="current_arv_regimen",
         verbose_name=(
-            "Which antiretroviral therapy regimen is the patient currently on?"),
+            "Which antiretroviral therapy regimen is the patient currently on?"
+        ),
         null=True,
         blank=False,
     )
 
-    other_current_arv_regimen = OtherCharField(
-        null=True,
-        blank=True,
-    )
+    other_current_arv_regimen = OtherCharField(null=True, blank=True)
 
     current_arv_regimen_start_date = models.DateField(
         verbose_name=(
-            "When did the patient start this current antiretroviral therapy regimen?"),
+            "When did the patient start this current antiretroviral therapy regimen?"
+        ),
         null=True,
         blank=True,
     )
@@ -90,27 +78,28 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
     has_previous_arv_regimen = models.CharField(
         verbose_name="Has the patient been on any previous regimen?",
         max_length=15,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     previous_arv_regimen = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,
         related_name="previous_arv_regimen",
         verbose_name=(
-            "Which antiretroviral therapy regimen was the patient previously on?"),
+            "Which antiretroviral therapy regimen was the patient previously on?"
+        ),
         blank=True,
     )
 
-    other_previous_arv_regimen = OtherCharField(
-        null=True,
-        blank=True,
-    )
+    other_previous_arv_regimen = OtherCharField(null=True, blank=True)
 
     on_oi_prophylaxis = models.CharField(
         verbose_name=(
-            "Is the patient on any prophylaxis against opportunistic infections?"),
+            "Is the patient on any prophylaxis against opportunistic infections?"
+        ),
         max_length=15,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     oi_prophylaxis = models.ManyToManyField(
         OiProphylaxis,
@@ -118,20 +107,19 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
         blank=True,
     )
 
-    other_oi_prophylaxis = OtherCharField(
-        null=True,
-        blank=True,
-    )
+    other_oi_prophylaxis = OtherCharField(null=True, blank=True)
 
     hypertension = models.CharField(
         verbose_name="Has the patient been diagnosed with hypertension?",
         max_length=15,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     on_hypertension_treatment = models.CharField(
         verbose_name="Is the patient on treatment for hypertension?",
         max_length=15,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     hypertension_treatment = models.TextField(
         "What medications is the patient currently taking for hypertension?",
@@ -142,12 +130,12 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
     statins = models.CharField(
         verbose_name="Is the patient currently taking any statins?",
         max_length=15,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     current_smoker = models.CharField(
-        verbose_name="Is the patient a current smoker?",
-        max_length=15,
-        choices=YES_NO)
+        verbose_name="Is the patient a current smoker?", max_length=15, choices=YES_NO
+    )
 
     former_smoker = models.CharField(
         verbose_name="Is the patient a previous smoker?",
@@ -158,62 +146,54 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
 
     diabetes_symptoms = models.ManyToManyField(
         DiabetesSymptoms,
-        verbose_name="In the past year, have you had any of the following symptoms?")
-
-    other_past_year_symptoms = OtherCharField(
-        null=True,
-        blank=True,
+        verbose_name="In the past year, have you had any of the following symptoms?",
     )
+
+    other_past_year_symptoms = OtherCharField(null=True, blank=True)
 
     family_diabetics = models.CharField(
         verbose_name=(
             "Has anyone in your immediate family (parents, siblings, children) "
-            "ever been diagnosed with diabetes?"),
+            "ever been diagnosed with diabetes?"
+        ),
         max_length=15,
         choices=YES_NO,
     )
 
     is_heartbeat_regular = models.CharField(
-        verbose_name="Is the heart beat regular?",
-        max_length=15,
-        choices=YES_NO)
+        verbose_name="Is the heart beat regular?", max_length=15, choices=YES_NO
+    )
 
     irregular_heartbeat = models.TextField(
-        "If the heartbeat is NOT regular, please describe",
-        null=True,
-        blank=True,
+        "If the heartbeat is NOT regular, please describe", null=True, blank=True
     )
 
     waist_circumference = models.DecimalField(
         verbose_name="Waist circumference",
         max_digits=8,
         decimal_places=2,
-        help_text="in cm")
+        help_text="in cm",
+    )
 
-    jaundice = models.CharField(
-        verbose_name="Jaundice",
-        max_length=15,
-        choices=YES_NO)
+    jaundice = models.CharField(verbose_name="Jaundice", max_length=15, choices=YES_NO)
 
     peripheral_oedema = models.CharField(
-        verbose_name="Presence of peripheral oedema",
-        max_length=15,
-        choices=YES_NO)
+        verbose_name="Presence of peripheral oedema", max_length=15, choices=YES_NO
+    )
 
     has_abdominal_tenderness = models.CharField(
-        verbose_name="Abdominal tenderness on palpation",
-        max_length=15,
-        choices=YES_NO)
+        verbose_name="Abdominal tenderness on palpation", max_length=15, choices=YES_NO
+    )
 
     abdominal_tenderness = models.TextField(
         verbose_name="If YES, abdominal tenderness, please describe",
         null=True,
-        blank=True,)
+        blank=True,
+    )
 
     has_enlarged_liver = models.CharField(
-        verbose_name="Enlarged liver on palpation",
-        max_length=15,
-        choices=YES_NO)
+        verbose_name="Enlarged liver on palpation", max_length=15, choices=YES_NO
+    )
 
     class Meta(CrfModelMixin.Meta):
         verbose_name = "Patient History"
