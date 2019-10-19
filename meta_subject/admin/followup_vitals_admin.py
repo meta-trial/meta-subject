@@ -28,7 +28,6 @@ class FollowupVitalsAdmin(
                     "dia_blood_pressure",
                     "heart_rate",
                     "respiratory_rate",
-                    "oxygen_saturation",
                     "temperature",
                 ),
             },
