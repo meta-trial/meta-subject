@@ -15,7 +15,8 @@ class PatientHistoryAdmin(CrfModelAdmin):
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Participant History", {
+            "Participant History",
+            {
                 "fields": (
                     "symptoms",
                     "other_symptoms",
@@ -42,7 +43,8 @@ class PatientHistoryAdmin(CrfModelAdmin):
                     "former_smoker",
                     "diabetes_symptoms",
                     "family_diabetics",
-                )}
+                )
+            },
         ),
         (
             "Physical examination",
@@ -62,7 +64,6 @@ class PatientHistoryAdmin(CrfModelAdmin):
                     "has_abdominal_tenderness",
                     "abdominal_tenderness",
                     "has_enlarged_liver",
-
                 )
             },
         ),
@@ -87,8 +88,4 @@ class PatientHistoryAdmin(CrfModelAdmin):
         "previous_arv_regimen": admin.VERTICAL,
     }
 
-    filter_horizontal = (
-        "symptoms",
-        "oi_prophylaxis",
-        "diabetes_symptoms",
-    )
+    filter_horizontal = ("symptoms", "oi_prophylaxis", "diabetes_symptoms")
