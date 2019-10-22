@@ -11,10 +11,9 @@ from edc_model.models import BaseUuidModel
 from edc_model_fields.fields import OtherCharField
 
 from .crf_model_mixin import CrfModelMixin
-from .model_mixins import VitalsFieldMixin
 
 
-class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
+class PatientHistory(CrfModelMixin, BaseUuidModel):
 
     symptoms = models.ManyToManyField(
         Symptoms, verbose_name="Do you have any of the following symptoms?"
@@ -158,41 +157,6 @@ class PatientHistory(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
         ),
         max_length=15,
         choices=YES_NO,
-    )
-
-    is_heartbeat_regular = models.CharField(
-        verbose_name="Is the heart beat regular?", max_length=15, choices=YES_NO
-    )
-
-    irregular_heartbeat = models.TextField(
-        "If the heartbeat is NOT regular, please describe", null=True, blank=True
-    )
-
-    waist_circumference = models.DecimalField(
-        verbose_name="Waist circumference",
-        max_digits=8,
-        decimal_places=2,
-        help_text="in cm",
-    )
-
-    jaundice = models.CharField(verbose_name="Jaundice", max_length=15, choices=YES_NO)
-
-    peripheral_oedema = models.CharField(
-        verbose_name="Presence of peripheral oedema", max_length=15, choices=YES_NO
-    )
-
-    has_abdominal_tenderness = models.CharField(
-        verbose_name="Abdominal tenderness on palpation", max_length=15, choices=YES_NO
-    )
-
-    abdominal_tenderness = models.TextField(
-        verbose_name="If YES, abdominal tenderness, please describe",
-        null=True,
-        blank=True,
-    )
-
-    has_enlarged_liver = models.CharField(
-        verbose_name="Enlarged liver on palpation", max_length=15, choices=YES_NO
     )
 
     class Meta(CrfModelMixin.Meta):

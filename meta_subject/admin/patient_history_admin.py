@@ -46,27 +46,6 @@ class PatientHistoryAdmin(CrfModelAdmin):
                 )
             },
         ),
-        (
-            "Physical examination",
-            {
-                "fields": (
-                    "sys_blood_pressure",
-                    "dia_blood_pressure",
-                    "heart_rate",
-                    "is_heartbeat_regular",
-                    "irregular_heartbeat",
-                    "respiratory_rate",
-                    "temperature",
-                    "weight",
-                    "waist_circumference",
-                    "jaundice",
-                    "peripheral_oedema",
-                    "has_abdominal_tenderness",
-                    "abdominal_tenderness",
-                    "has_enlarged_liver",
-                )
-            },
-        ),
         audit_fieldset_tuple,
     )
 
@@ -79,11 +58,6 @@ class PatientHistoryAdmin(CrfModelAdmin):
         "current_smoker": admin.VERTICAL,
         "former_smoker": admin.VERTICAL,
         "family_diabetics": admin.VERTICAL,
-        "is_heartbeat_regular": admin.VERTICAL,
-        "jaundice": admin.VERTICAL,
-        "peripheral_oedema": admin.VERTICAL,
-        "has_abdominal_tenderness": admin.VERTICAL,
-        "has_enlarged_liver": admin.VERTICAL,
         "current_arv_regimen": admin.VERTICAL,
         "previous_arv_regimen": admin.VERTICAL,
     }

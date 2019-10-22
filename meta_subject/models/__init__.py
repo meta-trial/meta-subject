@@ -12,6 +12,7 @@ from .health_economics import HealthEconomics
 from .malaria_rapid_test import MalariaRapidTest
 from .medication_adherence import MedicationAdherence
 from .patient_history import PatientHistory
+from .physical_exam import PhysicalExam
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .urine_dipstick_test import UrineDipstickTest
