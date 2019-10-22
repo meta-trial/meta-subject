@@ -37,6 +37,15 @@ class VitalsFieldMixin(models.Model):
         verbose_name="Respiratory rate:",
         validators=[MinValueValidator(6), MaxValueValidator(50)],
         help_text="breaths/min",
+        null=True,
+    )
+
+    # 12
+    oxygen_saturation = models.IntegerField(
+        verbose_name="Oxygen saturation:",
+        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        help_text="%",
+        null=True,
     )
 
     temperature = models.DecimalField(

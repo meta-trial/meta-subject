@@ -102,14 +102,6 @@ class PatientHistoryFormValidator(FormValidator):
             field_other="other_past_year_symptoms",
         )
 
-        self.required_if(
-            YES, field="is_heartbeat_regular", field_required="irregular_heartbeat"
-        )
-
-        self.required_if(
-            YES, field="has_abdominal_tenderness", field_required="abdominal_tenderness"
-        )
-
 
 class PatientHistoryForm(SubjectModelFormMixin):
 
