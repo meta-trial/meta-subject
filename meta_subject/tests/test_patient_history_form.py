@@ -64,11 +64,9 @@ class TestPatientHistory(MetaTestCaseMixin, TestCase):
             appointment=appointment, reason=SCHEDULED
         )
 
-        symptoms = BaselineSymptoms.objects.filter(short_name=OTHER)
-        arv_regimens = ArvRegimens.objects.filter(short_name="TDF_3TC_ATV_r")
-        oi_prophylaxis = OiProphylaxis.objects.filter(
-            short_name__in=["nausea", "weakness"]
-        )
+        symptoms = BaselineSymptoms.objects.filter(name=OTHER)
+        arv_regimens = ArvRegimens.objects.filter(name="TDF_3TC_ATV_r")
+        oi_prophylaxis = OiProphylaxis.objects.filter(name__in=["nausea", "weakness"])
         diabetes_symptoms = DiabetesSymptoms.objects.all()
 
         data = {k: v for k, v in options.items()}
