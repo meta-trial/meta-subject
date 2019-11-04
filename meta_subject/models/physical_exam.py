@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO
 from edc_model.models import BaseUuidModel
 
@@ -9,12 +10,13 @@ from .model_mixins import VitalsFieldMixin
 
 class PhysicalExam(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
 
-    is_heartbeat_regular = models.CharField(
-        verbose_name="Is the heart beat regular?", max_length=15, choices=YES_NO
+    irregular_heartbeat = models.CharField(
+        verbose_name=mark_safe("Is the heart beat <u>irregular</u>?"),
+        max_length=15, choices=YES_NO
     )
 
-    irregular_heartbeat = models.TextField(
-        "If the heartbeat is NOT regular, please describe", null=True, blank=True
+    irregular_heartbeat_description = models.TextField(
+        "If the heartbeat is <u>irregular</u>, please describe", null=True, blank=True
     )
 
     waist_circumference = models.DecimalField(
@@ -25,24 +27,25 @@ class PhysicalExam(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
         help_text="in centimeters",
     )
 
-    jaundice = models.CharField(verbose_name="Jaundice", max_length=15, choices=YES_NO)
+    jaundice = models.CharField(
+        verbose_name="Jaundice?", max_length=15, choices=YES_NO)
 
     peripheral_oedema = models.CharField(
-        verbose_name="Presence of peripheral oedema", max_length=15, choices=YES_NO
+        verbose_name="Presence of peripheral oedema?", max_length=15, choices=YES_NO
     )
 
-    has_abdominal_tenderness = models.CharField(
-        verbose_name="Abdominal tenderness on palpation", max_length=15, choices=YES_NO
+    abdominal_tenderness = models.CharField(
+        verbose_name="Abdominal tenderness on palpation?", max_length=15, choices=YES_NO
     )
 
-    abdominal_tenderness = models.TextField(
+    abdominal_tenderness_description = models.TextField(
         verbose_name="If YES, abdominal tenderness, please describe",
         null=True,
         blank=True,
     )
 
-    has_enlarged_liver = models.CharField(
-        verbose_name="Enlarged liver on palpation", max_length=15, choices=YES_NO
+    enlarged_liver = models.CharField(
+        verbose_name="Enlarged liver on palpation?", max_length=15, choices=YES_NO
     )
 
     class Meta(CrfModelMixin.Meta):

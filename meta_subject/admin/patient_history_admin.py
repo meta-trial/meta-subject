@@ -15,11 +15,18 @@ class PatientHistoryAdmin(CrfModelAdmin):
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Participant History",
+            "Part 1: Symptoms",
             {
                 "fields": (
                     "symptoms",
                     "other_symptoms",
+                )
+            },
+        ),
+        (
+            "Part 2: HIV, ARVs and other prophylaxis",
+            {
+                "fields": (
                     "hiv_diagnosis_date",
                     "arv_initiation_date",
                     "viral_load",
@@ -35,14 +42,30 @@ class PatientHistoryAdmin(CrfModelAdmin):
                     "on_oi_prophylaxis",
                     "oi_prophylaxis",
                     "other_oi_prophylaxis",
-                    "hypertension",
+                )
+            },
+        ),
+        (
+            "Part 3: Hypertension",
+            {
+                "fields": (
+                    "hypertension_diagnosis",
                     "on_hypertension_treatment",
                     "hypertension_treatment",
-                    "statins",
+                    "other_hypertension_treatment",
+                    "taking_statins",
+                )
+            },
+        ),
+        (
+            "Part 4: Other history",
+            {
+                "fields": (
                     "current_smoker",
                     "former_smoker",
                     "diabetes_symptoms",
-                    "family_diabetics",
+                    "other_diabetes_symptoms",
+                    "diabetes_in_family",
                 )
             },
         ),
@@ -50,16 +73,17 @@ class PatientHistoryAdmin(CrfModelAdmin):
     )
 
     radio_fields = {
-        "has_previous_arv_regimen": admin.VERTICAL,
-        "on_oi_prophylaxis": admin.VERTICAL,
-        "hypertension": admin.VERTICAL,
-        "on_hypertension_treatment": admin.VERTICAL,
-        "statins": admin.VERTICAL,
-        "current_smoker": admin.VERTICAL,
-        "former_smoker": admin.VERTICAL,
-        "family_diabetics": admin.VERTICAL,
         "current_arv_regimen": admin.VERTICAL,
+        "current_smoker": admin.VERTICAL,
+        "diabetes_in_family": admin.VERTICAL,
+        "former_smoker": admin.VERTICAL,
+        "has_previous_arv_regimen": admin.VERTICAL,
+        "hypertension_diagnosis": admin.VERTICAL,
+        "on_hypertension_treatment": admin.VERTICAL,
+        "on_oi_prophylaxis": admin.VERTICAL,
         "previous_arv_regimen": admin.VERTICAL,
+        "taking_statins": admin.VERTICAL,
     }
 
-    filter_horizontal = ("symptoms", "oi_prophylaxis", "diabetes_symptoms")
+    filter_horizontal = (
+        "symptoms", "oi_prophylaxis", "diabetes_symptoms", "hypertension_treatment")

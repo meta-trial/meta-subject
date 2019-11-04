@@ -1,4 +1,4 @@
-from edc_constants.constants import OTHER, NONE, NO, YES
+from edc_constants.constants import YES
 from edc_form_validators import FormValidator
 
 from .form_mixins import SubjectModelFormMixin
@@ -9,11 +9,13 @@ class PhysicalExamFormValidator(FormValidator):
     def clean(self):
 
         self.required_if(
-            YES, field="is_heartbeat_regular", field_required="irregular_heartbeat"
+            YES, field="irregular_heartbeat",
+            field_required="irregular_heartbeat_description"
         )
 
         self.required_if(
-            YES, field="has_abdominal_tenderness", field_required="abdominal_tenderness"
+            YES, field="abdominal_tenderness",
+            field_required="abdominal_tenderness_description"
         )
 
 

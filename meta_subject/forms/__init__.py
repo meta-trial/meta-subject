@@ -7,6 +7,7 @@ from .blood_results import (
 )
 from .followup_form import FollowupForm
 from .followup_vitals_form import FollowupVitalsForm
+from .medication_adherence_form import MedicationAdherenceForm
 from .patient_history_form import PatientHistoryForm
 from .physical_exam_form import PhysicalExamForm
 from .subject_requisition_form import SubjectRequisitionForm
