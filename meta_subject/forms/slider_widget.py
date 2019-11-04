@@ -23,4 +23,4 @@ class SliderWidget(Input):
         return context
 
     class Media:
-        css = {"all": ("slider.css",)}
+        css = {"all": ("meta_subject/slider.css",)}
