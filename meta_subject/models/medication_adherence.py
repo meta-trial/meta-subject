@@ -12,16 +12,17 @@ from .crf_model_mixin import CrfModelMixin
 class MedicationAdherence(CrfModelMixin, BaseUuidModel):
 
     visual_score_slider = models.CharField(
-        verbose_name="Visual score",
-        max_length=3,
-        help_text="%")
+        verbose_name="Visual score", max_length=3, help_text="%"
+    )
 
     visual_score_confirmed = models.IntegerField(
         verbose_name=mark_safe(
             "<B><font color='orange'>Interviewer</font></B>: "
-            "please confirm the score indicated from above."),
+            "please confirm the score indicated from above."
+        ),
         validators=[MinValueValidator(0), MaxValueValidator(100)],
-        help_text="%")
+        help_text="%",
+    )
 
     last_missed_pill = models.CharField(
         verbose_name="When was the last time you missed your study pill?",
@@ -29,13 +30,10 @@ class MedicationAdherence(CrfModelMixin, BaseUuidModel):
         choices=MISSED_PILLS,
     )
 
-    pill_count = models.IntegerField(
-        verbose_name="Number of pills left in the bottle")
+    pill_count = models.IntegerField(verbose_name="Number of pills left in the bottle")
 
     missed_pill_reason = models.ManyToManyField(
-        NonAdherenceReasons,
-        verbose_name="Reasons for missing study pills",
-        blank=True
+        NonAdherenceReasons, verbose_name="Reasons for missing study pills", blank=True
     )
 
     other_missed_pill_reason = OtherCharField()

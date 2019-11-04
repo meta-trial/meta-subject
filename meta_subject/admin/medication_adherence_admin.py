@@ -27,25 +27,17 @@ class MedicationAdherenceAdmin(CrfModelAdmin):
     form = MedicationAdherenceForm
 
     fieldsets = (
+        (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            None, {
-                "fields": (
-                    "subject_visit",
-                    "report_datetime",
-                )
-            }
-        ),
-        (
-            "Visual Score", {
+            "Visual Score",
+            {
                 "description": mark_safe(description),
-                "fields": (
-                    "visual_score_slider",
-                    "visual_score_confirmed",
-                )
-            }
+                "fields": ("visual_score_slider", "visual_score_confirmed"),
+            },
         ),
         (
-            "Pill count", {
+            "Pill count",
+            {
                 "description": mark_safe(
                     "<H5><B><font color='orange'>Interviewer to read</font></B></H5>"
                     "<p>People may miss taking their "
@@ -57,14 +49,12 @@ class MedicationAdherenceAdmin(CrfModelAdmin):
                     "last_missed_pill",
                     "missed_pill_reason",
                     "other_missed_pill_reason",
-                )
-            }
+                ),
+            },
         ),
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
-        "last_missed_pill": admin.VERTICAL,
-    }
+    radio_fields = {"last_missed_pill": admin.VERTICAL}
 
-    filter_horizontal = ("missed_pill_reason", )
+    filter_horizontal = ("missed_pill_reason",)

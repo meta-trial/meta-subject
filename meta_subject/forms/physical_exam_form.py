@@ -9,13 +9,15 @@ class PhysicalExamFormValidator(FormValidator):
     def clean(self):
 
         self.required_if(
-            YES, field="irregular_heartbeat",
-            field_required="irregular_heartbeat_description"
+            YES,
+            field="irregular_heartbeat",
+            field_required="irregular_heartbeat_description",
         )
 
         self.required_if(
-            YES, field="abdominal_tenderness",
-            field_required="abdominal_tenderness_description"
+            YES,
+            field="abdominal_tenderness",
+            field_required="abdominal_tenderness_description",
         )
 
 
