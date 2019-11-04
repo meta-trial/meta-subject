@@ -1,8 +1,9 @@
 {% load static %}
+
 <div class="container">
 <center>
 <div class="slidecontainer">
-<img src="{% static 'slider.png' %}" width="101%"></img>
+<img src="{% static 'meta_subject/slider.png' %}" width="101%" alt="0-100 scale"></img>
 <input class="{{ widget.class }}" type="{{ widget.type }}" name="{{ widget.name }}" min="{{ widget.min }}" max="{{ widget.max }}" {% if widget.value != None %}value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>
 <h1><B><span class="clearfix" id="id_{{ widget.name }}_value"></span> {{ widget.units }}</B></h1>
 </div>
