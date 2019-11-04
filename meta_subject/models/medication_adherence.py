@@ -1,5 +1,9 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from edc_model.models import BaseUuidModel
+from edc_model_fields.fields.other_charfield import OtherCharField
+from meta_lists.models import NonAdherenceReasons
 
 from ..choices import MISSED_PILLS
 from .crf_model_mixin import CrfModelMixin
@@ -7,7 +11,17 @@ from .crf_model_mixin import CrfModelMixin
 
 class MedicationAdherence(CrfModelMixin, BaseUuidModel):
 
-    visual_score = models.IntegerField(verbose_name="Visual score", help_text="%")
+    visual_score_slider = models.CharField(
+        verbose_name="Visual score",
+        max_length=3,
+        help_text="%")
+
+    visual_score_confirmed = models.IntegerField(
+        verbose_name=mark_safe(
+            "<B><font color='orange'>Interviewer</font></B>: "
+            "please confirm the score indicated from above."),
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        help_text="%")
 
     last_missed_pill = models.CharField(
         verbose_name="When was the last time you missed your study pill?",
@@ -15,15 +29,16 @@ class MedicationAdherence(CrfModelMixin, BaseUuidModel):
         choices=MISSED_PILLS,
     )
 
-    pill_count = models.IntegerField(verbose_name="Number of pills left in the bottle")
+    pill_count = models.IntegerField(
+        verbose_name="Number of pills left in the bottle")
 
-    # Interviewer to read: People may miss taking their medicines for
-    # various reasons. What was the reason you missed taking your
-    # pills the last time?
-
-    missed_pill_reason = models.TextField(
-        verbose_name="Reasons for missing study pills", null=True, blank=True
+    missed_pill_reason = models.ManyToManyField(
+        NonAdherenceReasons,
+        verbose_name="Reasons for missing study pills",
+        blank=True
     )
+
+    other_missed_pill_reason = OtherCharField()
 
     class Meta(CrfModelMixin.Meta):
         verbose_name = "Medication Adherence"

@@ -1,6 +1,10 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from meta_lists.models import Symptoms, ArvRegimens, OiProphylaxis, DiabetesSymptoms
+from django.utils.safestring import mark_safe
+from meta_lists.models import (
+    Symptoms, ArvRegimens, OiProphylaxis, DiabetesSymptoms,
+    HypertensionMedications,
+)
 from edc_reportable.units import (
     CELLS_PER_MILLIMETER_CUBED_DISPLAY,
     COPIES_PER_MILLILITER,
@@ -51,7 +55,8 @@ class PatientHistory(CrfModelMixin, BaseUuidModel):
         help_text=CELLS_PER_MILLIMETER_CUBED_DISPLAY,
     )
 
-    cd4_date = models.DateField(verbose_name="Date of last CD4", null=True, blank=True)
+    cd4_date = models.DateField(
+        verbose_name="Date of last CD4", null=True, blank=True)
 
     current_arv_regimen = models.ForeignKey(
         ArvRegimens,
@@ -87,6 +92,7 @@ class PatientHistory(CrfModelMixin, BaseUuidModel):
         verbose_name=(
             "Which antiretroviral therapy regimen was the patient previously on?"
         ),
+        null=True,
         blank=True,
     )
 
@@ -108,7 +114,7 @@ class PatientHistory(CrfModelMixin, BaseUuidModel):
 
     other_oi_prophylaxis = OtherCharField(null=True, blank=True)
 
-    hypertension = models.CharField(
+    hypertension_diagnosis = models.CharField(
         verbose_name="Has the patient been diagnosed with hypertension?",
         max_length=15,
         choices=YES_NO,
@@ -120,24 +126,32 @@ class PatientHistory(CrfModelMixin, BaseUuidModel):
         choices=YES_NO,
     )
 
-    hypertension_treatment = models.TextField(
-        "What medications is the patient currently taking for hypertension?",
-        null=True,
+    hypertension_treatment = models.ManyToManyField(
+        HypertensionMedications,
+        verbose_name=(
+            "What medications is the patient currently taking for hypertension?"),
         blank=True,
     )
 
-    statins = models.CharField(
+    other_hypertension_treatment = OtherCharField(
+        verbose_name=mark_safe(
+            "If other medication(s), please specify ..."),
+        null=True, blank=True)
+
+    taking_statins = models.CharField(
         verbose_name="Is the patient currently taking any statins?",
         max_length=15,
         choices=YES_NO,
     )
 
     current_smoker = models.CharField(
-        verbose_name="Is the patient a current smoker?", max_length=15, choices=YES_NO
+        verbose_name=mark_safe("Is the patient a <u>current</u> smoker?"),
+        max_length=15,
+        choices=YES_NO
     )
 
     former_smoker = models.CharField(
-        verbose_name="Is the patient a previous smoker?",
+        verbose_name=mark_safe("Is the patient a <u>previous</u> smoker?"),
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -145,18 +159,23 @@ class PatientHistory(CrfModelMixin, BaseUuidModel):
 
     diabetes_symptoms = models.ManyToManyField(
         DiabetesSymptoms,
-        verbose_name="In the past year, have you had any of the following symptoms?",
+        verbose_name=mark_safe(
+            "In the <u>past year</u>, have you had any of the following symptoms?"),
     )
 
-    other_past_year_symptoms = OtherCharField(null=True, blank=True)
+    other_diabetes_symptoms = OtherCharField(
+        verbose_name=mark_safe(
+            "If other symptom in the <u>past year</u>, please specify ..."),
+        null=True, blank=True)
 
-    family_diabetics = models.CharField(
+    diabetes_in_family = models.CharField(
         verbose_name=(
-            "Has anyone in your immediate family (parents, siblings, children) "
+            "Has anyone in your immediate family "
             "ever been diagnosed with diabetes?"
         ),
         max_length=15,
         choices=YES_NO,
+        help_text="Immediate family is parents, siblings, and children"
     )
 
     class Meta(CrfModelMixin.Meta):

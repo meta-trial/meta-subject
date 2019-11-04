@@ -15,23 +15,37 @@ class PhysicalExamAdmin(CrfModelAdmin):
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Physical examination",
+            "Part 1: BP and Heart",
             {
                 "fields": (
                     "sys_blood_pressure",
                     "dia_blood_pressure",
                     "heart_rate",
-                    "is_heartbeat_regular",
                     "irregular_heartbeat",
+                    "irregular_heartbeat_description",
                     "respiratory_rate",
+                )
+            },
+        ),
+        (
+            "Part 2: Other vitals",
+            {
+                "fields": (
                     "temperature",
                     "weight",
                     "waist_circumference",
+                )
+            },
+        ),
+        (
+            "Part 3: Signs",
+            {
+                "fields": (
                     "jaundice",
                     "peripheral_oedema",
-                    "has_abdominal_tenderness",
                     "abdominal_tenderness",
-                    "has_enlarged_liver",
+                    "abdominal_tenderness_description",
+                    "enlarged_liver",
                 )
             },
         ),
@@ -39,9 +53,9 @@ class PhysicalExamAdmin(CrfModelAdmin):
     )
 
     radio_fields = {
-        "is_heartbeat_regular": admin.VERTICAL,
+        "abdominal_tenderness": admin.VERTICAL,
+        "enlarged_liver": admin.VERTICAL,
+        "irregular_heartbeat": admin.VERTICAL,
         "jaundice": admin.VERTICAL,
         "peripheral_oedema": admin.VERTICAL,
-        "has_abdominal_tenderness": admin.VERTICAL,
-        "has_enlarged_liver": admin.VERTICAL,
     }
