@@ -1,4 +1,3 @@
-
 from django import forms
 from ..models import MedicationAdherence
 from .form_mixins import SubjectModelFormMixin
@@ -14,7 +13,8 @@ class MedicationAdherenceFormValidator(FormValidator):
         if confirmed is not None:
             if int(self.cleaned_data.get("visual_score_slider", "0")) != confirmed:
                 raise forms.ValidationError(
-                    {"visual_score_confirmed": "Does not match visual score above."})
+                    {"visual_score_confirmed": "Does not match visual score above."}
+                )
 
         if self.cleaned_data.get("last_missed_pill"):
             if self.cleaned_data.get("last_missed_pill") == NEVER:
@@ -34,8 +34,8 @@ class MedicationAdherenceForm(SubjectModelFormMixin):
     form_validator_cls = MedicationAdherenceFormValidator
 
     visual_score_slider = forms.CharField(
-        label="Visual Score",
-        widget=SliderWidget(attrs={"min": 0, "max": 100}))
+        label="Visual Score", widget=SliderWidget(attrs={"min": 0, "max": 100})
+    )
 
     class Meta:
         model = MedicationAdherence

@@ -29,13 +29,7 @@ class PhysicalExamAdmin(CrfModelAdmin):
         ),
         (
             "Part 2: Other vitals",
-            {
-                "fields": (
-                    "temperature",
-                    "weight",
-                    "waist_circumference",
-                )
-            },
+            {"fields": ("temperature", "weight", "waist_circumference")},
         ),
         (
             "Part 3: Signs",

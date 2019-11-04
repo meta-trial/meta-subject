@@ -14,15 +14,7 @@ class PatientHistoryAdmin(CrfModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
-        (
-            "Part 1: Symptoms",
-            {
-                "fields": (
-                    "symptoms",
-                    "other_symptoms",
-                )
-            },
-        ),
+        ("Part 1: Symptoms", {"fields": ("symptoms", "other_symptoms")}),
         (
             "Part 2: HIV, ARVs and other prophylaxis",
             {
@@ -86,4 +78,8 @@ class PatientHistoryAdmin(CrfModelAdmin):
     }
 
     filter_horizontal = (
-        "symptoms", "oi_prophylaxis", "diabetes_symptoms", "hypertension_treatment")
+        "symptoms",
+        "oi_prophylaxis",
+        "diabetes_symptoms",
+        "hypertension_treatment",
+    )

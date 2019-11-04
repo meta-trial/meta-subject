@@ -14,14 +14,12 @@ from pprint import pprint
 
 
 class TestPatientHistory(MetaTestCaseMixin, TestCase):
-
     def setUp(self):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
         symptoms = BaselineSymptoms.objects.filter(name=NONE)
         arv_regimens = ArvRegimens.objects.filter(name="TDF_3TC_ATV_r")
-        oi_prophylaxis = OiProphylaxis.objects.filter(
-            name__in=["nausea", "weakness"])
+        oi_prophylaxis = OiProphylaxis.objects.filter(name__in=["nausea", "weakness"])
         diabetes_symptoms = DiabetesSymptoms.objects.all()
         self.options = {
             "current_arv_regimen": arv_regimens,

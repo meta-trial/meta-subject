@@ -99,14 +99,11 @@ class PatientHistoryFormValidator(FormValidator):
             field_other="other_hypertension_treatment",
         )
 
-        self.applicable_if(NO, field="current_smoker",
-                           field_applicable="former_smoker")
+        self.applicable_if(NO, field="current_smoker", field_applicable="former_smoker")
 
         self.m2m_single_selection_if(NONE, m2m_field="past_year_symptoms")
         self.m2m_other_specify(
-            OTHER,
-            m2m_field="diabetes_symptoms",
-            field_other="other_diabetes_symptoms",
+            OTHER, m2m_field="diabetes_symptoms", field_other="other_diabetes_symptoms"
         )
 
 

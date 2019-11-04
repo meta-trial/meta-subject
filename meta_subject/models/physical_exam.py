@@ -12,7 +12,8 @@ class PhysicalExam(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
 
     irregular_heartbeat = models.CharField(
         verbose_name=mark_safe("Is the heart beat <u>irregular</u>?"),
-        max_length=15, choices=YES_NO
+        max_length=15,
+        choices=YES_NO,
     )
 
     irregular_heartbeat_description = models.TextField(
@@ -27,8 +28,7 @@ class PhysicalExam(VitalsFieldMixin, CrfModelMixin, BaseUuidModel):
         help_text="in centimeters",
     )
 
-    jaundice = models.CharField(
-        verbose_name="Jaundice?", max_length=15, choices=YES_NO)
+    jaundice = models.CharField(verbose_name="Jaundice?", max_length=15, choices=YES_NO)
 
     peripheral_oedema = models.CharField(
         verbose_name="Presence of peripheral oedema?", max_length=15, choices=YES_NO
