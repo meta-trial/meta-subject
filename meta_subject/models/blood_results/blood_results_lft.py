@@ -66,7 +66,7 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     # AST
     alt = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        validators=[MinValueValidator(0), MaxValueValidator(55)],
         verbose_name="ALT",
         null=True,
         blank=True,
