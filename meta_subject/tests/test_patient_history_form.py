@@ -18,11 +18,11 @@ class TestPatientHistory(MetaTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
         symptoms = BaselineSymptoms.objects.filter(name=NONE)
-        arv_regimens = ArvRegimens.objects.filter(name="TDF_3TC_ATV_r")
-        oi_prophylaxis = OiProphylaxis.objects.filter(name__in=["nausea", "weakness"])
+        arv_regimen = ArvRegimens.objects.get(name="TDF_3TC_ATV_r")
+        oi_prophylaxis = OiProphylaxis.objects.filter(name__in=['fluconazole', 'isoniazid'])
         diabetes_symptoms = DiabetesSymptoms.objects.all()
         self.options = {
-            "current_arv_regimen": arv_regimens,
+            "current_arv_regimen": arv_regimen.id,
             "current_smoker": YES,
             "dia_blood_pressure": 80,
             "diabetes_in_family": NO,
@@ -40,6 +40,7 @@ class TestPatientHistory(MetaTestCaseMixin, TestCase):
             "oi_prophylaxis": oi_prophylaxis,
             "on_hypertension_treatment": NO,
             "on_oi_prophylaxis": YES,
+            "other_diabetes_symptoms": "erik",
             "past_year_symptoms": None,
             "peripheral_oedema": YES,
             "previous_arv_regimen": None,
