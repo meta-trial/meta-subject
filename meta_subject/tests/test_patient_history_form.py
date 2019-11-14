@@ -19,7 +19,9 @@ class TestPatientHistory(MetaTestCaseMixin, TestCase):
         self.subject_visit = self.get_subject_visit()
         symptoms = BaselineSymptoms.objects.filter(name=NONE)
         arv_regimen = ArvRegimens.objects.get(name="TDF_3TC_ATV_r")
-        oi_prophylaxis = OiProphylaxis.objects.filter(name__in=['fluconazole', 'isoniazid'])
+        oi_prophylaxis = OiProphylaxis.objects.filter(
+            name__in=["fluconazole", "isoniazid"]
+        )
         diabetes_symptoms = DiabetesSymptoms.objects.all()
         self.options = {
             "current_arv_regimen": arv_regimen.id,

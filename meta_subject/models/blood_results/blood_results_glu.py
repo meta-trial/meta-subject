@@ -72,7 +72,7 @@ class BloodResultsGlu(
 
     glucose_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=(
             (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
             (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),

@@ -1,6 +1,7 @@
 from edc_adverse_event.constants import AE_INITIAL_ACTION
 from edc_action_item import Action, site_action_items
 from edc_constants.constants import YES, HIGH_PRIORITY
+from meta_visit_schedule import DAY1
 
 from .constants import (
     BLOOD_RESULTS_FBC_ACTION,
@@ -24,11 +25,16 @@ class BaseBloodResultsAction(Action):
     def reopen_action_item_on_change(self):
         return False
 
+    @property
+    def is_baseline(self):
+        return self.reference_obj.subject_visit.appointment.visit_code == DAY1
+
     def get_next_actions(self):
         next_actions = []
         if (
             self.reference_obj.results_abnormal == YES
             and self.reference_obj.results_reportable == YES
+            and not self.is_baseline
         ):
             # AE for reportable result, though not on DAY1.0
             next_actions = [AE_INITIAL_ACTION]

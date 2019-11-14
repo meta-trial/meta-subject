@@ -57,7 +57,7 @@ class BloodResultsHba1c(BloodResultsModelMixin, BaseUuidModel):
 
     hba1c_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=((PERCENT, PERCENT),),
         null=True,
         blank=True,

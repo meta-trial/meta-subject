@@ -4,13 +4,17 @@ from django.db.models.deletion import PROTECT
 from edc_constants.choices import YES_NO
 from edc_model.models import BaseUuidModel
 from edc_model.validators import datetime_not_future
-from edc_reportable import IU_LITER, GRAMS_PER_LITER
+from edc_reportable import (
+    IU_LITER,
+    GRAMS_PER_LITER,
+    IU_LITER_DISPLAY,
+    GRAMS_PER_DECILITER,
+)
 from edc_reportable.choices import REPORTABLE
 
 from ...constants import BLOOD_RESULTS_LFT_ACTION
 from ..subject_requisition import SubjectRequisition
 from .blood_results_model_mixin import BloodResultsModelMixin
-from edc_reportable.units import GRAMS_PER_DECILITER
 
 
 class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
@@ -46,8 +50,8 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     ast_units = models.CharField(
         verbose_name="units",
-        max_length=10,
-        choices=((IU_LITER, IU_LITER),),
+        max_length=15,
+        choices=((IU_LITER, IU_LITER_DISPLAY),),
         null=True,
         blank=True,
     )
@@ -74,8 +78,8 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     alt_units = models.CharField(
         verbose_name="units",
-        max_length=10,
-        choices=((IU_LITER, IU_LITER),),
+        max_length=15,
+        choices=((IU_LITER, IU_LITER_DISPLAY),),
         null=True,
         blank=True,
     )
@@ -102,8 +106,8 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     alp_units = models.CharField(
         verbose_name="units",
-        max_length=10,
-        choices=((IU_LITER, IU_LITER),),
+        max_length=15,
+        choices=((IU_LITER, IU_LITER_DISPLAY),),
         null=True,
         blank=True,
     )
@@ -130,8 +134,8 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     amylase_units = models.CharField(
         verbose_name="units",
-        max_length=10,
-        choices=((IU_LITER, IU_LITER),),
+        max_length=15,
+        choices=((IU_LITER, IU_LITER_DISPLAY),),
         null=True,
         blank=True,
     )
@@ -158,8 +162,8 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     ggt_units = models.CharField(
         verbose_name="units",
-        max_length=10,
-        choices=((IU_LITER, IU_LITER),),
+        max_length=15,
+        choices=((IU_LITER, IU_LITER_DISPLAY),),
         null=True,
         blank=True,
     )
@@ -186,7 +190,7 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
 
     albumin_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=(
             (GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),
             (GRAMS_PER_LITER, GRAMS_PER_LITER),
