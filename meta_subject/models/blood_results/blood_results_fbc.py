@@ -49,7 +49,7 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
 
     haemoglobin_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=((GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),),
         null=True,
         blank=True,
@@ -68,16 +68,18 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # HCT
-    hct = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+    hct = models.DecimalField(
+        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
         verbose_name="Hematocrit",
+        decimal_places=2,
+        max_digits=6,
         null=True,
         blank=True,
     )
 
     hct_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=((PERCENT, PERCENT),),
         null=True,
         blank=True,
@@ -107,7 +109,7 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
 
     rbc_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=(
             (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),
             (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED),
@@ -135,7 +137,7 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
 
     wbc_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=(
             (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),
             (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED_DISPLAY),
@@ -165,7 +167,7 @@ class BloodResultsFbc(BloodResultsModelMixin, BaseUuidModel):
 
     platelets_units = models.CharField(
         verbose_name="units",
-        max_length=10,
+        max_length=15,
         choices=(
             (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),
             (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED_DISPLAY),
