@@ -1,7 +1,7 @@
 from edc_adverse_event.constants import AE_INITIAL_ACTION
 from edc_action_item import Action, site_action_items
 from edc_constants.constants import YES, HIGH_PRIORITY
-from meta_visit_schedule import DAY1
+from meta_visit_schedule.constants import DAY1
 
 from .constants import (
     BLOOD_RESULTS_FBC_ACTION,
