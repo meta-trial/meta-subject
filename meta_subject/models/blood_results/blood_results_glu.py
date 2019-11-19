@@ -3,6 +3,8 @@ from django.db.models.deletion import PROTECT
 from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO
 from edc_identifier.model_mixins import TrackingModelMixin
+from edc_lab.choices import RESULT_QUANTIFIER
+from edc_lab.constants import EQ
 from edc_model.models import BaseUuidModel
 from edc_model.validators import datetime_not_future
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER
@@ -68,6 +70,10 @@ class BloodResultsGlu(
         decimal_places=4,
         null=True,
         blank=True,
+    )
+
+    glucose_quantifier = models.CharField(
+        max_length=10, choices=RESULT_QUANTIFIER, default=EQ,
     )
 
     glucose_units = models.CharField(
