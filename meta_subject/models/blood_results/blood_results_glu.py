@@ -73,9 +73,7 @@ class BloodResultsGlu(
     )
 
     glucose_quantifier = models.CharField(
-        max_length=10,
-        choices=RESULT_QUANTIFIER,
-        default=EQ,
+        max_length=10, choices=RESULT_QUANTIFIER, default=EQ,
     )
 
     glucose_units = models.CharField(
