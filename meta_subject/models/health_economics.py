@@ -124,7 +124,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
         help_text="in Shilling",
         null=True,
         blank=True,
-        editable=False
+        editable=False,
     )
 
     # removed
@@ -132,7 +132,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
         verbose_name="If YES, how did you pay or who paid for these drugs",
         max_length=15,
         choices=PAYEE_CHOICES,
-        editable=False
+        editable=False,
     )
 
     hypertensive_expenditure_month = models.IntegerField(
@@ -224,7 +224,6 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
         decimal_places=1,
         max_digits=4,
         help_text="in days. (1,2,3 etc. If half-day 0.5)",
-
     )
 
     travel_time = models.CharField(
