@@ -51,7 +51,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     higher_education = models.CharField(
-        verbose_name="Did you go to higer education?", max_length=15, choices=YES_NO
+        verbose_name="Did you go to higher education?", max_length=15, choices=YES_NO
     )
 
     higher_education_in_years = models.IntegerField(
@@ -113,22 +113,26 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
     )
 
     buy_meds_month = models.CharField(
-        verbose_name="Over the last month, did you buy any drugs or had drug refill?",
+        verbose_name="Over the last month, did you get any drugs or have a drug refill?",
         max_length=15,
         choices=YES_NO,
     )
 
+    # removed
     diabetic_expenditure_month = models.IntegerField(
         verbose_name="If YES, how much did you spend on Diabetic drugs",
         help_text="in Shilling",
         null=True,
         blank=True,
+        editable=False,
     )
 
+    # removed
     diabetic_payee = models.CharField(
         verbose_name="If YES, how did you pay or who paid for these drugs",
         max_length=15,
         choices=PAYEE_CHOICES,
+        editable=False,
     )
 
     hypertensive_expenditure_month = models.IntegerField(
@@ -207,7 +211,7 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
 
     routine_activities = models.CharField(
         verbose_name="What would you be doing if you had not come to the hospital?",
-        max_length=15,
+        max_length=25,
         choices=ACTIVITY_CHOICES,
     )
 
@@ -215,8 +219,11 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
         verbose_name="If OTHER, please specify", max_length=50, null=True, blank=True
     )
 
-    off_work_days = models.IntegerField(
-        verbose_name="How much time did you take off work?"
+    off_work_days = models.DecimalField(
+        verbose_name="How much time did you take off work?",
+        decimal_places=1,
+        max_digits=4,
+        help_text="in days. (1,2,3 etc. If half-day 0.5)",
     )
 
     travel_time = models.CharField(
@@ -260,17 +267,20 @@ class HealthEconomics(CrfModelMixin, BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    childcare_source_timeoff = models.IntegerField(
+    childcare_source_timeoff = models.DecimalField(
         verbose_name=(
             "How much time did a family member, friend take off work to look "
             "after your child or children?"
         ),
+        decimal_places=1,
+        max_digits=4,
         null=True,
         blank=True,
-        help_text="in Days",
+        help_text="in days. (1,2,3 etc. If half-day 0.5)",
     )
 
-    transport = models.CharField(
+    # change to M2M, add field for other sepcify.
+    transport_old = models.CharField(
         verbose_name=(
             "Which form of transport did you take to get to the hospital today?"
         ),
