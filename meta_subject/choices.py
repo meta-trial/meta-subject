@@ -3,7 +3,9 @@ from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
 
-from .constants import APPT, APPT_OTHER, FASTING, NON_FASTING
+from .constants import (
+    APPT, APPT_OTHER, FASTING, NON_FASTING, RAPID_TEST, MICROSCOPY,
+)
 
 
 ACTIVITY_CHOICES = (
@@ -53,6 +55,11 @@ FUNDOSCOPY_CHOICES = (
     ("maculopathy", "Maculopathy"),
 )
 
+MALARIA_TEST_CHOICES = (
+    (RAPID_TEST, "Rapid test"),
+    (MICROSCOPY, "Microscopy"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
 
 MISSED_PILLS = (
     ("today", "today"),

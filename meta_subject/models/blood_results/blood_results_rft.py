@@ -65,7 +65,7 @@ class BloodResultsRft(
     )
 
     # Serum creatinine levels
-    # note, two fields from the model mixin
+    # note, two fields not shown are from the model mixin
 
     creatinine_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True

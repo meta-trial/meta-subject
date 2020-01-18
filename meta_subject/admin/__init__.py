@@ -8,7 +8,7 @@ from .complications_admin import ComplicationsAdmin
 from .followup_admin import FollowupAdmin
 from .followup_vitals_admin import FollowupVitalsAdmin
 from .health_economics_admin import HealthEconomicsAdmin
-from .malaria_rapid_test import MalariaRapidTestAdmin
+from .malaria_test_admin import MalariaTestAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .patient_history_admin import PatientHistoryAdmin
 from .physical_exam_admin import PhysicalExamAdmin
