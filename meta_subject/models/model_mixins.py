@@ -1,29 +1,17 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from edc_model import models as edc_models
 
 
 class VitalsFieldMixin(models.Model):
-    weight = models.DecimalField(
-        verbose_name="Weight:",
-        validators=[MinValueValidator(20), MaxValueValidator(150)],
-        decimal_places=1,
-        max_digits=4,
-        help_text="kg",
-    )
+
+    weight = edc_models.WeightField()
 
     # 9
-    sys_blood_pressure = models.IntegerField(
-        verbose_name="Blood pressure: systolic",
-        validators=[MinValueValidator(50), MaxValueValidator(220)],
-        help_text="in mm. format SYS, e.g. 120",
-    )
+    sys_blood_pressure = edc_models.SystolicPressureField(null=True, blank=False,)
 
     # 9
-    dia_blood_pressure = models.IntegerField(
-        verbose_name="Blood pressure: diastolic",
-        validators=[MinValueValidator(20), MaxValueValidator(150)],
-        help_text="in Hg. format DIA, e.g. 80",
-    )
+    dia_blood_pressure = edc_models.DiastolicPressureField(null=True, blank=False,)
 
     # 10
     heart_rate = models.IntegerField(
