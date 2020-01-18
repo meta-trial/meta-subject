@@ -2,15 +2,15 @@ from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 
 from ..admin_site import meta_subject_admin
-from ..forms import UrineDipstickTestForm
-from ..models import UrineDipstickTest
+from ..forms import MalariaTestForm
+from ..models import MalariaTest
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(UrineDipstickTest, site=meta_subject_admin)
-class UrineDipstickTestAdmin(CrfModelAdmin):
+@admin.register(MalariaTest, site=meta_subject_admin)
+class MalariaTestAdmin(CrfModelAdmin):
 
-    form = UrineDipstickTestForm
+    form = MalariaTestForm
 
     fieldsets = (
         (None, {
@@ -18,10 +18,9 @@ class UrineDipstickTestAdmin(CrfModelAdmin):
                 "subject_visit",
                 "report_datetime",
                 "performed",
+                "diagnostic_type",
                 "not_performed_reason",
-                "ketones",
-                "protein",
-                "glucose",
+                "result",
             )
         }),
         audit_fieldset_tuple,
@@ -29,7 +28,6 @@ class UrineDipstickTestAdmin(CrfModelAdmin):
 
     radio_fields = {
         "performed": admin.VERTICAL,
-        "ketones": admin.VERTICAL,
-        "protein": admin.VERTICAL,
-        "glucose": admin.VERTICAL,
+        "diagnostic_type": admin.VERTICAL,
+        "result": admin.VERTICAL,
     }

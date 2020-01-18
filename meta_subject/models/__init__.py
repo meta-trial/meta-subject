@@ -9,7 +9,7 @@ from .complications import Complications
 from .followup import Followup
 from .followup_vitals import FollowupVitals
 from .health_economics import HealthEconomics
-from .malaria_rapid_test import MalariaRapidTest
+from .malaria_test import MalariaTest
 from .medication_adherence import MedicationAdherence
 from .patient_history import PatientHistory
 from .physical_exam import PhysicalExam
