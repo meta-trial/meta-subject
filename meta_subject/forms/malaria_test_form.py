@@ -8,17 +8,11 @@ from .form_mixins import SubjectModelFormMixin
 class MalariaTestFormValidator(FormValidator):
     def clean(self):
 
-        self.applicable_if(
-            YES, field="performed",
-            field_applicable="diagnostic_type")
+        self.applicable_if(YES, field="performed", field_applicable="diagnostic_type")
 
-        self.required_if(
-            NO, field="performed",
-            field_required="not_performed_reason")
+        self.required_if(NO, field="performed", field_required="not_performed_reason")
 
-        self.applicable_if(
-            YES, field="performed",
-            field_applicable="result")
+        self.applicable_if(YES, field="performed", field_applicable="result")
 
 
 class MalariaTestForm(SubjectModelFormMixin):

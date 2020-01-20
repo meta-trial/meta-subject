@@ -1,6 +1,7 @@
 from .blood_results import (
     BloodResultsFbc,
     BloodResultsHba1c,
+    BloodResultsLipid,
     BloodResultsLft,
     BloodResultsRft,
     BloodResultsGlu,

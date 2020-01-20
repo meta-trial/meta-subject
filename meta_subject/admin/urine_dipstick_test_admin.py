@@ -13,17 +13,20 @@ class UrineDipstickTestAdmin(CrfModelAdmin):
     form = UrineDipstickTestForm
 
     fieldsets = (
-        (None, {
-            "fields": (
-                "subject_visit",
-                "report_datetime",
-                "performed",
-                "not_performed_reason",
-                "ketones",
-                "protein",
-                "glucose",
-            )
-        }),
+        (
+            None,
+            {
+                "fields": (
+                    "subject_visit",
+                    "report_datetime",
+                    "performed",
+                    "not_performed_reason",
+                    "ketones",
+                    "protein",
+                    "glucose",
+                )
+            },
+        ),
         audit_fieldset_tuple,
     )
 

@@ -4,7 +4,12 @@ from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
 
 from .constants import (
-    APPT, APPT_OTHER, FASTING, NON_FASTING, RAPID_TEST, MICROSCOPY,
+    APPT,
+    APPT_OTHER,
+    FASTING,
+    NON_FASTING,
+    RAPID_TEST,
+    MICROSCOPY,
 )
 
 

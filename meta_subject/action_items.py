@@ -6,6 +6,7 @@ from meta_visit_schedule.constants import DAY1
 from .constants import (
     BLOOD_RESULTS_FBC_ACTION,
     BLOOD_RESULTS_GLU_ACTION,
+    BLOOD_RESULTS_LIPID_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
     BLOOD_RESULTS_HBA1C_ACTION,
@@ -59,6 +60,12 @@ class BloodResultsFbcAction(BaseBloodResultsAction):
     reference_model = "meta_subject.bloodresultsfbc"
 
 
+class BloodResultsLipidAction(BaseBloodResultsAction):
+    name = BLOOD_RESULTS_LIPID_ACTION
+    display_name = "Reportable result: LIPIDS"
+    reference_model = "meta_subject.bloodresultslipid"
+
+
 class BloodResultsEgfrAction(BaseBloodResultsAction):
     name = (BLOOD_RESULTS_EGFR_ACTION,)
     display_name = "Reportable eGFR"
@@ -79,6 +86,7 @@ class BloodResultsHba1cAction(BaseBloodResultsAction):
 
 site_action_items.register(BloodResultsFbcAction)
 site_action_items.register(BloodResultsEgfrAction)
+site_action_items.register(BloodResultsLipidAction)
 site_action_items.register(BloodResultsLftAction)
 site_action_items.register(BloodResultsRftAction)
 site_action_items.register(BloodResultsGluAction)

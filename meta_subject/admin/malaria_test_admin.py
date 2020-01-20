@@ -13,16 +13,19 @@ class MalariaTestAdmin(CrfModelAdmin):
     form = MalariaTestForm
 
     fieldsets = (
-        (None, {
-            "fields": (
-                "subject_visit",
-                "report_datetime",
-                "performed",
-                "diagnostic_type",
-                "not_performed_reason",
-                "result",
-            )
-        }),
+        (
+            None,
+            {
+                "fields": (
+                    "subject_visit",
+                    "report_datetime",
+                    "performed",
+                    "diagnostic_type",
+                    "not_performed_reason",
+                    "result",
+                )
+            },
+        ),
         audit_fieldset_tuple,
     )
 
