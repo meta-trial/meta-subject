@@ -8,21 +8,13 @@ from .form_mixins import SubjectModelFormMixin
 class UrineDipstickTestFormValidator(FormValidator):
     def clean(self):
 
-        self.required_if(
-            NO, field="performed",
-            field_required="not_performed_reason")
+        self.required_if(NO, field="performed", field_required="not_performed_reason")
 
-        self.applicable_if(
-            YES, field="performed",
-            field_applicable="ketones")
+        self.applicable_if(YES, field="performed", field_applicable="ketones")
 
-        self.applicable_if(
-            YES, field="performed",
-            field_applicable="protein")
+        self.applicable_if(YES, field="performed", field_applicable="protein")
 
-        self.applicable_if(
-            YES, field="performed",
-            field_applicable="glucose")
+        self.applicable_if(YES, field="performed", field_applicable="glucose")
 
 
 class UrineDipstickTestForm(SubjectModelFormMixin):

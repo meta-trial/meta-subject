@@ -10,9 +10,7 @@ from .crf_model_mixin import CrfModelMixin
 class MalariaTest(CrfModelMixin, BaseUuidModel):
 
     performed = models.CharField(
-        verbose_name="Was the malaria test performed?",
-        max_length=15,
-        choices=YES_NO,
+        verbose_name="Was the malaria test performed?", max_length=15, choices=YES_NO,
     )
 
     not_performed_reason = models.CharField(

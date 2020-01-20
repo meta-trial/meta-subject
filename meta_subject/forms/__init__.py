@@ -1,5 +1,6 @@
 from .blood_results import (
     BloodResultsGluForm,
+    BloodResultsLipidForm,
     BloodResultsLftForm,
     BloodResultsRftForm,
     BloodResultsFbcForm,
