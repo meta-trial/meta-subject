@@ -181,7 +181,9 @@ class BloodResultsLft(BloodResultsModelMixin, BaseUuidModel):
     )
 
     # Serum Albumin
-    albumin = models.IntegerField(
+    albumin = models.DecimalField(
+        decimal_places=1,
+        max_digits=6,
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name="Serum Albumin",
         null=True,

@@ -87,7 +87,10 @@ class BloodResultsRft(
     uric_acid_units = models.CharField(
         verbose_name="units",
         max_length=15,
-        choices=((MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),),
+        choices=(
+            (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),
+            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
+        ),
         null=True,
         blank=True,
     )
